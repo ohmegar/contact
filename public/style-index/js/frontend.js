@@ -17,36 +17,6 @@ $(document).ready(function () {
             }    
             }
         },   
-
-        // rowGroup: {
-        //     className: 'division',
-        //     dataSrc: function(row) {
-        //         return row.division;
-        //     },
-        //     startRender: function ( rows, group ) {
-        //         return group +' ('+rows.count()+' คน)';
-        //     }
-        //     },
-        // startRender: function ( rows, group, level, data) {
-        //     if ( level == 0 ) {
-        //         return group+' ('+rows.count()+' คน)';
-        //     } else if (( level == 0 ) == null) {
-        //         return null;
-        //     } else{
-        //         return group+' ('+rows.count()+' ท่าน)';
-        //     }
-        // },
-        // startRender: function ( rows, group, level ) {
-        //     if ( level == 0) {
-        //         return group +' ('+rows.count()+' คน)';
-        //     } else if ( level == 1) {
-        //         return group +' ('+rows.count()+' คน)';
-        //     } else {
-        //         return group;
-        //     }    
-        // }
-
-
         bFilter: false, //แสดงกล่องค้นหา
         lengthChange: true, //true,false แสดงตัวเลือกจำนวนรายการต่อหน้า
         // iDisplayLength: 50,  //กำหนด default row per page เป็น 50
@@ -453,7 +423,7 @@ $('#search-form').on('submit', function(e) {
 // ------------------------------------------------------------------
 
 
-var tbview_sn = $('#tbview_so').DataTable({
+var tbview_so = $('#tbview_so').DataTable({
     responsive: true,
     processing: true,
     serverSide: true,
