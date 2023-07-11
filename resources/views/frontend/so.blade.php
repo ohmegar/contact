@@ -20,7 +20,7 @@
                     <div class="col-md-12">
                         <form action="" id="search-form" name="search-form" method="GET">                        
                             <div class="input-group">
-                                <span class="input-group-text" style="background-image: linear-gradient(to right,#000000,#7c7c7c); color: #FFF">ค้นหาข้อมูลตามเบอร์โทร : </span>
+                                <span class="input-group-text" style="background-image: linear-gradient(to right,#000000,#7c7c7c); color: #FFF">ค้นหาข้อมูลตามโครสร้าง : </span>
                                 <input type="text" name="dss_phone" id="dss_phone" class="form-control" autocomplete="off" placeholder="โปรดกรอก เบอร์โทร ถ้าหากทราบ (เฉพาะตัวเลขเท่านั้น)" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                             </div>
                             {{-- <div class="input-group">
@@ -44,18 +44,19 @@
                 
                     <div class="card mb-3">        
                         <div class="card-body table-responsive">
-                            <table class="table table-bordered table-striped table-sm display" id="tbview_st">
+                            <table class="table table-bordered table-striped table-sm display" id="tbview_so">
                                 <thead>
                                     <tr align="center" style="background-image: linear-gradient(to right, #800c6a,#3f033f); color: #FFF">
+                                        <th>กอง/สำนัก</th>
+                                        <th>กลุ่ม</th>
                                         <th style="width: 20%">ชื่อ-นามสกุล</th>
-                                        <th style="width: 25%">ภาพ</th>
-                                        <th style="width: 20%">ตำแหน่ง</th>
-                                        <th style="width: 20%">สังกัด</th>
-                                        <th style="width: 5%">สถานะ</th>
-                                        <th style="width: 10%">Tel .</th>
+                                        <th style="width: 15%">ภาพ</th>
+                                        <th style="width: 12%">ตำแหน่ง</th>
+                                        <th style="width: 10%">สถานะ</th>
+                                        <th style="width: 15%">Tel .</th>
                                         <th style="width: 5%">Fax</th>
-                                        <th style="width: 5%">e-mail</th>
-                                        <th style="width: 5%">ดูรายละเอียด</th>                                         
+                                        <th style="width: 8%">e-mail</th>
+                                        <th style="width: 15%">สถานที่ทำงาน</th>
                                     </tr>
                                 </thead>
                                 <tbody>
