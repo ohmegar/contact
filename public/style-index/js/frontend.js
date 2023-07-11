@@ -4,7 +4,23 @@ $(document).ready(function () {
         responsive: true,
         processing: true,
         serverSide: true,
-        order: [[0, 'asc']], //คำสั่งให้เรียงจากมากไปน้อยของคอลัม 5 นับ 012345
+        // order: [2, 'ASC'], //คำสั่งให้เรียงจากมากไปน้อยของคอลัม 5 นับ 012345
+        order: [[0, 'ASC'],[1, 'ASC'],[5, 'ASC']], //คำสั่งให้เรียงจากมากไปน้อยของคอลัม 5 นับ 012345
+        rowGroup: {
+            dataSrc: ["division","sub_division"],
+            emptyDataGroup: null //ไม่แสดงข้อความถ้าไม่มีข้อมูล
+        },   
+
+        // rowGroup: {
+        //     className: 'division',
+        //     dataSrc: function(row) {
+        //         return row.division;
+        //     },
+        //     startRender: function ( rows, group ) {
+        //         return group +' ('+rows.count()+' คน)';
+        //     }
+        //     },
+
         bFilter: false, //แสดงกล่องค้นหา
         lengthChange: true, //true,false แสดงตัวเลือกจำนวนรายการต่อหน้า
         // iDisplayLength: 50,  //กำหนด default row per page เป็น 50
@@ -33,20 +49,24 @@ $(document).ready(function () {
         },
         columns: [
         {
-            data: 'emp_name',
-            name: 'emp_name'
+            data: 'division',
+            name: 'division'
         },
         {
-            data: 'position_view',
-            name: 'position_view'
+            data: 'sub_division',
+            name: 'sub_division'
+        },    
+        {
+            data: 'emp_name',
+            name: 'emp_name'
         },
         {
             data: 'image',
             name: 'image'
         },
         {
-            data: 'division',
-            name: 'division'
+            data: 'position_view',
+            name: 'position_view'
         },
         {
             data: 'emp_type_name',
@@ -65,14 +85,40 @@ $(document).ready(function () {
             name: 'dss_mail'
         },
         {
-            data: 'emp_id',
-            name: 'emp_id'
+            data: 'dss_location',
+            name: 'dss_location'
         }
-
     ],
         columnDefs: [
+            // ซ่อนข้อมูลคอลัม 1-2
+            {
+                targets: [0, 1],
+                visible: false
+            },
             {
                 targets: 0,
+                render: function (data, type, row) {
+                    if (row.division == null){
+                        var data = '<center> - </center>';                    
+                    } else {
+                        var data = '<center>' + row.division + '</center>';                    
+                    }
+                    return data;
+                },
+            },
+            {
+                targets: 1,
+                render: function (data, type, row) {
+                    if (row.sub_division == null){
+                        var data = '<center> - </center>';                    
+                    } else {
+                        var data = '<center>' + row.sub_division + '</center>';                    
+                    }
+                    return data;
+                },
+            },
+            {
+                targets: 2,
                 render: function (data, type, row) {
                     if (row.english_name == null){
                         var data =  '<span style="color:blue">'+row.pfix_name + row.emp_name+'</span>';                                            
@@ -83,7 +129,7 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 1,
+                targets: 3,
                 render: function (data, type, row) {
                     if (row.image == null){
                         var data = '<center><img src="style-index/images/nophoto.png" class="img-dss"></img></center>';
@@ -94,7 +140,7 @@ $(document).ready(function () {
                 },
             },            
             {
-                targets: 2,
+                targets: 4,
                 render: function (data, type, row) {
                     if (row.position_view == 'นักบริหาร'){
                         var data = '<center> อธิบดีกรมวิทยาศาสตร์บริการ </center>';    
@@ -107,26 +153,14 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 3,
-                render: function (data, type, row) {
-                    if (row.sub_division == null){
-                        var data = '<span style="color:blue"><i class="fa fa-map-marker"></i> '+row.division+'</span>';                    
-                    } else {
-                        var data = '<span style="color:blue"><i class="fa fa-map-marker"></i> '+row.division+'</span><br><i class="fa fa-tag"></i> '+row.sub_division;                    
-                    }
-                    return data;
-                },
-            },
-            {
-                targets: 4,
+                targets: 5,
                 render: function (data, type, row) {
                     var data = '<center>' + row.emp_type_name + '</center>';                    
                     return data;
                 },
             },
-
             {
-                targets: 5,
+                targets: 6,
                 render: function (data, type, row) {
                     if (row.dss_phone == null){
                         var data = '<center> - </center>';                    
@@ -137,7 +171,7 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 6,
+                targets: 7,
                 render: function (data, type, row) {
                     if (row.dss_fax == null){
                         var data = '<center> - </center>';                    
@@ -148,7 +182,7 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 7,
+                targets: 8,
                 render: function (data, type, row) {
                     if (row.dss_mail == null){
                         var data = '<center> - </center>';                    
@@ -159,12 +193,17 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 8,                
-                render: function (data, type, row) {    
-                    var btnView = '<button type="button" class="btn btn-outline-info btn-block" id="btViewAll" data-id="' + data + '"><i class="fa fa-eye"></i></button>';
-                    return btnView;
+                targets: 9,
+                render: function (data, type, row) {
+                    if (row.dss_location == null){
+                        var data = '<center> - </center>';                    
+                    } else {
+                        var data = '<center>' + row.dss_location + '</center>';                    
+                    }
+                    return data;
                 },
             },
+
         ]
     });
 
@@ -176,54 +215,7 @@ $(document).ready(function () {
     });
 
 
-
-    (function ($) {
-        $('body').on('click', '#btViewAll', function () {
-            $('#modal-viewrd').modal('show');
-            let id = $(this).attr('data-id');
-            // console.log(id);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: 'getviewrd/' + id,
-                type: 'get',
-                dataType: 'json',
-                success: function (data) {
-                // console.log(data);
-                $('#id_view').val(data.rd_id );
-                $('#rd_budget_view').val(data.rd_budget).trigger("change");
-                $('#rd_name_view').val(data.rd_name);
-                $('#rd_cat_view').val(data.rd_cat).trigger("change");
-                $('#rd_contract_view').val(data.rd_contract);
-                $('#rd_locat_view').val(data.rd_locat).trigger("change");
-                $('#rd_tel_view').val(data.rd_tel);
-                $('#rd_fax_view').val(data.rd_fax);
-                $('#rd_email_view').val(data.rd_email);
-                $('#rd_pic_view').val(data.rd_pic);
-                $('#rd_file_view').val(data.rd_file);
-    
-                let picShow_view = '../storage/pic/'+data.rd_pic;
-                document.getElementById("PicShow_view").setAttribute("src", picShow_view + '#embedded=true');
-    
-                let FileShow_view = '../storage/pdf/'+data.rd_file;
-                document.getElementById("FileShow_view").setAttribute("src", FileShow_view + '#embedded=true');
-    
-            },
-            error: function (data) {
-                // console.log(data);
-            }
-            });
-        });
-    
-    }(jQuery));
-
-
-
-
-
+// ------------------------------------------------------------------
 
 /* handle tables st ค้นหาตามเบอร์โทร*/
 var tbview_st = $('#tbview_st').DataTable({

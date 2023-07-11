@@ -1141,3 +1141,9 @@ figure.snip1219 {
      border-color:transparent;
      border-color:rgba(201, 201, 201, 0.2)
 }
+
+
+tr.odd td:first-child,
+tr.even td:first-child {
+     padding-left: 1em;
+}

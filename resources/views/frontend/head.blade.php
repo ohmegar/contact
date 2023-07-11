@@ -43,6 +43,9 @@
       <script src="{{ asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
       <script src="{{ asset('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
       <script src="{{ asset('adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+
+      <!-- DataTables rowGroup-->
+      <script src="https://cdn.datatables.net/rowgroup/1.4.0/js/dataTables.rowGroup.min.js"></script>
       
       <script src="{{ asset('style-index/js/bootstrap-datepicker.min.js') }}"></script>
       <script src="{{ asset('style-index/js/cookie.js') }}"></script>
