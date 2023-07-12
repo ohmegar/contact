@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\P_EMP_ALL;
+use App\Models\Glb_Organization;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
@@ -92,22 +93,34 @@ class FrontendController extends Controller
     public function getDataSo(Request $request)
     {
         $data = P_EMP_ALL::select('emp_id', 'pfix_name', 'emp_name', 'pfix_name_e', 'english_name', 'image', 'division', 'sub_division', 'position_view', 'emp_type_name', 'dss_phone', 'dss_fax', 'dss_mail', 'dss_location', 'show_order');
-        // dd($data);
-        // dd($request->searchName);
+        // ->orderBy('show_order');
 
-            return Datatables::eloquent($data)
+        // dd($data);
+        // ddd($request->division);
+
+        return Datatables::eloquent($data)
             ->filter(function ($query) use ($request) {
             if ($request->has('division')) {
-                $query->where('division', 'like', "%{$request->division}%");
+                $query->where('division', 'like', "$request->division");
             }
             })
             ->make(true);
-        }
+    }
+
 
 
     public function so()
     {
-        return view('frontend.so');
+        $max = Glb_Organization::max('org_code');
+        $max_org_code = substr($max, 0, 2) . '_____000';
+
+        $glborganization = Glb_Organization::where('org_code', 'like', $max_org_code)
+            ->orderBy('org_code')
+            ->get();
+
+            return view('frontend.so', [
+                'glborganization' => $glborganization,
+            ]);
     }
 
 

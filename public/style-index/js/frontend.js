@@ -476,7 +476,7 @@ var tbview_so = $('#tbview_so').DataTable({
         // url: "http://localhost/procurement/public/datatablesdss",
         url: "data-so/",
         data: function (d) {
-            d.division = $('input[name=division]').val();
+            d.division = $('#division').val();
             }
     },
     columns: [

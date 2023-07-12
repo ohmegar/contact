@@ -21,8 +21,8 @@
                         <form action="" id="search-form" name="search-form" method="GET">                        
                             <div class="input-group">
                                 <span class="input-group-text" style="background-image: linear-gradient(to right,#000000,#7c7c7c); color: #FFF">ค้นหาข้อมูลตามเบอร์โทร : </span>
-                                <input type="text" name="dss_phone" id="dss_phone" class="form-control" autocomplete="off" placeholder="โปรดกรอก เบอร์โทร ถ้าหากทราบ (เฉพาะตัวเลขเท่านั้น)">
-                                {{-- <input type="text" name="dss_phone" id="dss_phone" class="form-control" autocomplete="off" placeholder="โปรดกรอก เบอร์โทร ถ้าหากทราบ (เฉพาะตัวเลขเท่านั้น)" onkeypress="return event.charCode >= 48 && event.charCode <= 57"> --}}
+                                {{-- <input type="text" name="dss_phone" id="dss_phone" class="form-control" autocomplete="off" placeholder="โปรดกรอก เบอร์โทร ถ้าหากทราบ (เฉพาะตัวเลขเท่านั้น)"> --}}
+                                <input type="text" name="dss_phone" id="dss_phone" class="form-control" autocomplete="off" placeholder="โปรดกรอก เบอร์โทร ถ้าหากทราบ (เฉพาะตัวเลขเท่านั้น)" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                             </div>
                                 <br><center><span class="input-group-btn">
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> ค้นหา</button>
@@ -35,7 +35,7 @@
                         <div class="card-body table-responsive">
                             <table class="table table-bordered table-striped table-sm display" id="tbview_st">
                                 <thead>
-                                    <tr align="center" style="background-image: linear-gradient(to right, #aaa316,#7f8a08); color: #FFF">
+                                    <tr align="center" style="background-image: linear-gradient(to right, #d18f17,#d18f17); color: #FFF">
                                         <th>กอง/สำนัก</th>
                                         <th>กลุ่ม</th>
                                         <th style="width: 20%">ชื่อ-นามสกุล</th>

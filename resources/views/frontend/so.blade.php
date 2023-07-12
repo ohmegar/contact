@@ -20,21 +20,15 @@
                     <div class="col-md-12">
                         <form action="" id="search-form" name="search-form" method="GET">                        
                             <div class="input-group">
-                                <span class="input-group-text" style="background-image: linear-gradient(to right,#000000,#7c7c7c); color: #FFF">ค้นหาข้อมูลตามโครสร้าง : </span>
-                                <input type="text" name="dss_phone" id="dss_phone" class="form-control" autocomplete="off" placeholder="โปรดกรอก เบอร์โทร ถ้าหากทราบ (เฉพาะตัวเลขเท่านั้น)" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                <span class="input-group-text" id="basic-addon1" style="background-image: linear-gradient(to right,#000000,#7c7c7c); color: #FFF">ค้นหาข้อมูลตามหน่วยงาน : </span>
+                                <select name="division" id="division" class="form-control">
+                                        <option value="">- โปรดเลือกหน่วยงาน -</option>
+                                    @foreach ($glborganization as $glborganizations)
+                                        <option value="{{ $glborganizations->org_name }}">{{ $glborganizations->org_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            {{-- <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1" style="background-image: linear-gradient(to right,#005C97,#363795); color: #FFF">หรือ ประเภท : </span>
-                                    <select name="cat" id="cat" class="form-control">
-                                            <option value="">- เลือกประเภทประกาศ -</option>
-                                        @foreach ($cate as $catShow)
-                                            <option value="{{ $catShow->c_id }}" @if($catShow->c_id==16)
-                                            disabled
-                                            @endif>{{ $catShow->catname }}</option>  
-                                        @endforeach
-                                    </select>
-                            </div>
-                            --}}
+                        
                                 <br><center><span class="input-group-btn">
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> ค้นหา</button>
                                     <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> ล้างค่า</button>
@@ -46,7 +40,7 @@
                         <div class="card-body table-responsive">
                             <table class="table table-bordered table-striped table-sm display" id="tbview_so">
                                 <thead>
-                                    <tr align="center" style="background-image: linear-gradient(to right, #800c6a,#3f033f); color: #FFF">
+                                    <tr align="center" style="background-image: linear-gradient(to right, #3f033f,#3f033f); color: #FFF">
                                         <th>กอง/สำนัก</th>
                                         <th>กลุ่ม</th>
                                         <th style="width: 20%">ชื่อ-นามสกุล</th>

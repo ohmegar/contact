@@ -49,6 +49,10 @@ Route::middleware(['agent'])->group(function () {
         Route::get('/so', [FrontendController::class, 'so'])->name('so');
         Route::get('/data-so', [FrontendController::class,'getDataSo'])->name('getDataSo');
 
+        Route::get('/info-form', function () {
+            return view('frontend.info-form');
+        });
+
 
 // Check login by Keycloak 
         Route::group(['middleware' => 'keycloak-web'], function () {

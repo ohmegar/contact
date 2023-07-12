@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use App\Models\HR_WorkTemp;
 use Yajra\Oci8\Eloquent\OracleEloquent as Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
