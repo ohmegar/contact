@@ -14,8 +14,4 @@ class P_EMP_ALL extends Model
     public $timestamps = false;
 
 
-    // public function workTimes() {
-    //     return $this->hasMany(HR_WorkTemp::class, 'card_id', 'tag_no');
-    // }
-
 }

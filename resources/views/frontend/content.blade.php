@@ -41,7 +41,7 @@
 
     </div>
     <center><button type="button" class="btn btn-dark"><p style="font-size: 18px; color:rgb(255, 255, 255)"><i class="fa fa-address-card"></i>
-        <a href="{{ url('/info-form') }}" style="color:#ffffff;">แบบฟอร์มออนไลน์ขอแก้ไขข้อมูล</p></a>
+        <a href="{{ url('/info-form') }}" style="color:#ffffff;">ต้องการแก้ไขข้อมูลส่วนตัว</p></a>
     </button></center> 
 
 </div>  
