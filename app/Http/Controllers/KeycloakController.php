@@ -13,7 +13,8 @@ class KeycloakController extends Controller
     public function keycloakSession()
     {
         //  เรียกใช้ external API ด้วย Guzzle
-        $response = Http::get('http://api.dss.local/api/employee/eng-name/' . auth()->user()->name);
+        // $response = Http::get('http://api.dss.local/api/employee/eng-name/' . auth()->user()->name);
+        $response = Http::get('http://contact.dss.local/api/user/' . auth()->user()->name);
         $emp = json_decode($response, true);
         // $emp = ['emp_name' => 'ทดสอบ'];
         if (empty($emp)) {
