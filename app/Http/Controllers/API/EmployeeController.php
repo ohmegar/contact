@@ -10,7 +10,8 @@ class EmployeeController extends Controller
 {
     public function user($engname)
     {
-        $employee = P_EMP_ALL::where('english_name', "$engname%")
+        // dd($engname."%");
+        $employee = P_EMP_ALL::where('english_name', $engname."%")
             ->first();
 
         if ($employee) {
