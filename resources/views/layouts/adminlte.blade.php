@@ -63,7 +63,7 @@
       
         <li class="nav-item">
           @if (Session::get('emp_name'))
-          <span id="time" style="color:rgb(0, 13, 255)"></span> {{Session::get('user_title')}}{{Session::get('emp_name')}} {{Session::get('position')}}
+          <span id="time" style="color:rgb(0, 13, 255)"></span> {{Session::get('pfix_name')}}{{Session::get('emp_name')}} {{Session::get('position_view')}}
 
           <!-- check time now -->         
           <script type="text/javascript">
