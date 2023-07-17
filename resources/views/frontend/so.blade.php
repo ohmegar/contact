@@ -65,8 +65,6 @@
 </body>
 
 
-@include('backend.modals.modal-indexviewall')
-
 
 <script src="{{ asset('style-index/js/frontend.js') }}"></script>
 

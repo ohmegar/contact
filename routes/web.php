@@ -62,23 +62,24 @@ Route::middleware(['agent'])->group(function () {
                     Route::name('')->group(function () {
                         Route::get('/backend', [DssController::class, 'backendindex'])->name('backendindex');
 
-                        //ViewAll
-                        Route::get('/backend/viewall', [DssController::class, 'viewall'])->name('viewall');
-                        Route::get('/datatablesviewall', [DssController::class,'getDatatablesViewAll'])->name('getDatatablesViewAll');
-
                         //View
-                        Route::get('/backend/view', [DssController::class, 'view'])->name('view');
-                        Route::get('/datatablesview', [DssController::class,'getDatatablesView'])->name('getDatatablesView');
-                        Route::post('/backend/save', [DssController::class, 'save'])->name('save');
+                        Route::get('/backend/viewAdmin', [DssController::class, 'viewAdmin'])->name('viewAdmin');
+                        Route::get('/data-admin', [DssController::class,'getDatatablesAdmin'])->name('getDatatablesAdmin');
+                        Route::get('/backend/getviewall/{id}', [DssController::class,'getviewall'])->name('getviewall');
+                        Route::post('/backend/update', [DssController::class,'update'])->name('update');
+                        
+
+                        //ViewAll
+                        // Route::get('/backend/viewall', [DssController::class, 'viewall'])->name('viewall');
+                        // Route::get('/datatablesviewall', [DssController::class,'getDatatablesViewAll'])->name('getDatatablesViewAll');
+
                         
                         //แสดงรายละเอียดของตนเอง
-                        Route::get('/backend/vs/{id}', [DssController::class, 'viewDetailSelf'])->name('viewDetailSelf');
+                        // Route::get('/backend/vs/{id}', [DssController::class, 'viewDetailSelf'])->name('viewDetailSelf');
 
                         //แสดงรายละเอียดทั้งหมด
-                        Route::get('/backend/v/{id}', [DssController::class, 'viewDetail'])->name('viewDetail');
+                        // Route::get('/backend/v/{id}', [DssController::class, 'viewDetail'])->name('viewDetail');
                         
-                        Route::post('/backend/update', [DssController::class,'update'])->name('update');
-                        Route::post('/backend/del', [DssController::class, 'del'])->name('del');
                         
                         
                     });    

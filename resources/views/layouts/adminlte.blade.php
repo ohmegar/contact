@@ -8,7 +8,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>Short URL & QR code @yield('title')</title>
+  <title>DSS Contact @yield('title')</title>
 
   <!-- Styles -->
   {{-- <link rel="preconnect" href="https://fonts.gstatic.com"> --}}
@@ -212,6 +212,8 @@
   <script src="{{ asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
   <script src="{{ asset('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
   <script src="{{ asset('adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+  <!-- DataTables rowGroup-->
+  <script src="https://cdn.datatables.net/rowgroup/1.4.0/js/dataTables.rowGroup.min.js"></script>
   <!-- Ekko Lightbox -->
   <script src="{{ asset('adminlte/plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
   <!-- AdminLTE -->

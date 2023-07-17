@@ -52578,3 +52578,14 @@ a.text-muted:hover {
   color: #fff !important;
   transition: ease-in all 0.5s;
 }
+
+/* รูปภาพ */
+.img-dss {
+    border-radius: 50%;
+    z-index:5;
+    height:120px;
+    width:120px;
+    border:3px solid;
+    border-color:transparent;
+    border-color:rgba(201, 201, 201, 0.2)
+}
