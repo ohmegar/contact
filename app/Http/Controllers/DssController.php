@@ -195,8 +195,8 @@ class DssController extends Controller
         // Handle File Upload
         if ($request->hasFile('image')) {
             $oldPic = $request->input('oldImage');
-            if (File::exists('http://hr-expertise.dss.local/storage/images/profile'. $oldPic)) {
-                File::delete('http://hr-expertise.dss.local/storage/images/profile' . $oldPic);
+            if (File::exists('hr-expertise/storage/images/profile/'. $oldPic)) {
+                File::delete('hr-expertise/storage/images/profile/' . $oldPic);
                 // ที่เก็บคนละที่
                 // if (File::exists('http://hr-expertise.dss.local/storage/images/profile/'. $oldPic)) {
                 //     File::delete('http://hr-expertise.dss.local/storage/images/profile/' . $oldPic);
@@ -208,7 +208,7 @@ class DssController extends Controller
                 // Filename to store
                 $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension;
                 // Upload Image
-                $request->file('image')->move('http://hr-expertise.dss.local/storage/images/profile', $fileNameToStore);                
+                $request->file('image')->move('hr-expertise/storage/images/profile/', $fileNameToStore);                
                 // ที่เก็บคนละที่
                 // $request->file('image')->storeAs('http://hr-expertise.dss.local/storage/images/profile/', $fileNameToStore);
                 //  ที่เก็บเดียวกัน
@@ -221,7 +221,7 @@ class DssController extends Controller
                 // Filename to store
                 $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension; // ให้ใช้ emp_id ต่อกับ time   
                 // Upload Image
-                $request->file('image')->move('http://hr-expertise.dss.local/storage/images/profile', $fileNameToStore);                
+                $request->file('image')->move('hr-expertise/storage/images/profile/', $fileNameToStore);                
                 // ที่เก็บคนละที่
                 // $request->file('image')->storeAs('http://hr-expertise.dss.local/storage/images/profile/', $fileNameToStore);
                 //  ที่เก็บเดียวกัน
