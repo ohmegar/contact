@@ -205,9 +205,10 @@ $(document).ready(function () {
                 },
                 {
                     targets: 10,                
-                    render: function (data, type, row) {    
-                        var btnUpdate = '<button type="button" class="btn btn-outline-warning btn-block" id="btEditAll" data-id="' + data + '"><i class="fa fa-edit"></i></button>';
-                        return btnUpdate;
+                    render: function (data, type, row) {   
+                        var btnEdit = '<a href="../backend/editAdmin/'+ data +'" role="button" data-id="' + data + '" id="btEdit" class="btn btn-outline-warning btn-block"><i class="fa fa-edit"></i></a> ';
+                        // var btnUpdate = '<button type="button" class="btn btn-outline-warning btn-block" id="btEditAll" data-id="' + data + '"><i class="fa fa-edit"></i></button>';
+                        return btnEdit;
                     },
                 },
                 ]
@@ -221,48 +222,48 @@ $(document).ready(function () {
         });
     
     
-    (function ($) {
-        $('body').on('click', '#btEditAll', function () {
-            // $('#overlay-edit-building').html(overlay);
-            $('#modal-edit').modal('show');
-            let id = $(this).attr('data-id');
-            // console.log(id);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: 'getviewall/' + id,
-                type: 'get',
-                dataType: 'json',
-                success: function (data) {
-                // console.log(data);
-                    $('#id_update').val(data.id);
-                    $('#cat_update').val(data.cat).trigger("change");
-                    $('#number_update').val(data.number);
-                    $('#subject_update').val(data.subject);
-                    $('#filename_update').val(data.filename);
+    // (function ($) {
+    //     $('body').on('click', '#btEditAll', function () {
+    //         // $('#overlay-edit-building').html(overlay);
+    //         $('#modal-edit').modal('show');
+    //         let id = $(this).attr('data-id');
+    //         // console.log(id);
+    //         $.ajaxSetup({
+    //             headers: {
+    //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //             }
+    //         });
+    //         $.ajax({
+    //             url: 'getviewall/' + id,
+    //             type: 'get',
+    //             dataType: 'json',
+    //             success: function (data) {
+    //             // console.log(data);
+    //                 $('#id_update').val(data.id);
+    //                 $('#cat_update').val(data.cat).trigger("change");
+    //                 $('#number_update').val(data.number);
+    //                 $('#subject_update').val(data.subject);
+    //                 $('#filename_update').val(data.filename);
     
-                    //ตัดวันที่
-                    // let textd = "2022-08-10";
-                    let text = data.date;
-                    let strYearOld = text.substring(0, 4);
-                    let strMonthOld= text.substring(5, 7);
-                    let strDayOld = text.substring(8, 10);
-                    let resultdate = strDayOld+'-'+strMonthOld+'-'+strYearOld;
-                    // console.log(resultdate);
-                    $('#date_update').val(resultdate);
+    //                 //ตัดวันที่
+    //                 // let textd = "2022-08-10";
+    //                 let text = data.date;
+    //                 let strYearOld = text.substring(0, 4);
+    //                 let strMonthOld= text.substring(5, 7);
+    //                 let strDayOld = text.substring(8, 10);
+    //                 let resultdate = strDayOld+'-'+strMonthOld+'-'+strYearOld;
+    //                 // console.log(resultdate);
+    //                 $('#date_update').val(resultdate);
     
     
-            },
-            error: function (data) {
-                // console.log(data);
-            }
-            });
-        });
+    //         },
+    //         error: function (data) {
+    //             // console.log(data);
+    //         }
+    //         });
+    //     });
     
-    }(jQuery));
+    // }(jQuery));
     
 
 

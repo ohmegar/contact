@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class HR_Employee extends Model
 {
-    protected $table = 'HR_EMPLOYEE';
-    protected $primaryKey = 'EMP_ID';
-    protected $fillable = ['EMP_NAME', 'ENGLISH_NAME', 'EMP_TYPE', 'STATUS', 'DSS_PHONE', 'DSS_FAX', 'DSS_MAIL', 'IMAGE', 'DSS_LOCATION', 'SHOW_ORDER', 'LINE_TOKEN', 'STATUS_LINE'];
+    protected $table = 'hr_employee';
+    protected $primaryKey = 'emp_id';
+    protected $fillable = ['emp_id', 'emp_name', 'english_name', 'emp_type', 'status', 'dss_phone', 'dss_fax', 'dss_mail', 'image', 'dss_location', 'show_order', 'line_token', 'status_line'];
     protected $gruaded = [];
     public $timestamps = false;
 

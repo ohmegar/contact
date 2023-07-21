@@ -6,9 +6,9 @@
 
 @section('content')
 
-<div class="card card-info">
+<div class="card card-success">
     <div class="card-header">
-        <h3 class="card-title"><i class="fas fa-bullhorn"></i> ข้อมูลส่วนตัวทั้งหมด</h3>
+        <h3 class="card-title"><i class="fas fa fa-address-card"></i> ข้อมูลส่วนตัวทั้งหมด</h3>
         <div class="card-tools">
     </div>
     <!-- /.card-tools -->
@@ -33,7 +33,7 @@
             <div class="card-body table-responsive">
                 <table class="table table-bordered table-striped table-sm display" id="tbview_admin">
                     <thead>
-                        <tr align="center" style="background-image: linear-gradient(to right, #0b3e02,#0b3e02); color: #FFF">
+                        <tr align="center" style="background-image: linear-gradient(to right, #000b56,#000b56); color: #FFF">
                             <th>กอง/สำนัก</th>
                             <th>กลุ่ม</th>
                             <th style="width: 20%">ชื่อ-นามสกุล</th>

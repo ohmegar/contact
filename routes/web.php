@@ -62,23 +62,12 @@ Route::middleware(['agent'])->group(function () {
                     Route::name('')->group(function () {
                         Route::get('/backend', [DssController::class, 'backendindex'])->name('backendindex');
 
-                        //View
+                        //ViewAdmin
                         Route::get('/backend/viewAdmin', [DssController::class, 'viewAdmin'])->name('viewAdmin');
                         Route::get('/data-admin', [DssController::class,'getDatatablesAdmin'])->name('getDatatablesAdmin');
                         Route::get('/backend/getviewall/{id}', [DssController::class,'getviewall'])->name('getviewall');
-                        Route::post('/backend/update', [DssController::class,'update'])->name('update');
-                        
-
-                        //ViewAll
-                        // Route::get('/backend/viewall', [DssController::class, 'viewall'])->name('viewall');
-                        // Route::get('/datatablesviewall', [DssController::class,'getDatatablesViewAll'])->name('getDatatablesViewAll');
-
-                        
-                        //แสดงรายละเอียดของตนเอง
-                        // Route::get('/backend/vs/{id}', [DssController::class, 'viewDetailSelf'])->name('viewDetailSelf');
-
-                        //แสดงรายละเอียดทั้งหมด
-                        // Route::get('/backend/v/{id}', [DssController::class, 'viewDetail'])->name('viewDetail');
+                        Route::get('/backend/editAdmin/{id}', [DssController::class, 'viewDetailAdmin'])->name('viewDetailAdmin');
+                        Route::post('/backend/editAdmin/', [DssController::class,'editAdmin'])->name('editAdmin');
                         
                         
                         

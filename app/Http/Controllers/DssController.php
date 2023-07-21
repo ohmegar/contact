@@ -73,28 +73,6 @@ class DssController extends Controller
     // }
 
 
-    // public function getDatatablesView(Request $request)
-    // {
-    //     if(!Session::get('emp_name')) {
-    //         return redirect()->route('keycloak.login');
-    //     }
-
-    //     $data = HR_Employee::whereIn('l_status', [1,2])
-    //     ->where('l_code_user', '=', Session::get('emp_id')); 
-    //     // dd($data);
-    //     // $Datatables = app('datatables'); //app, datatable เป็นชื่อตัวแปรห้ามแก้ไข
-
-    //     return Datatables::eloquent($data)
-    //     ->filter(function ($query) use ($request) {
-
-
-    //     if ($request->has('l_name')) {
-    //         $query->where('l_name', 'like', "%{$request->l_name}%");
-    //     }
-    //     })
-    //     ->make(true);
-    // }
-
 
 
     public function getDatatablesAdmin(Request $request)
@@ -140,25 +118,6 @@ class DssController extends Controller
     }
 
 
-    // public function viewall()
-    // {
-    //     if(!Session::get('emp_name')) {
-    //         return redirect()->route('keycloak.login');
-    //     }
-        
-    //     return view('backend.viewall');
-    // }
-
-
-    // public function viewDetail($id)
-    // {    
-    //     $data = HR_Employee::where('l_code',$id)->get();
-    //     // dd($data);          
-        
-    //     return view('backend.viewdetail', [
-    //         'datas' => $data,
-    //     ]);
-    // }
 
 
     // public function viewDetailSelf($id)
@@ -204,22 +163,117 @@ class DssController extends Controller
     //     ]);
     // }
 
+    public function viewDetailAdmin($id)
+    {    
+        $data = P_EMP_ALL::where('emp_id',$id)->get();
+        // dd($data); 
+        // $data_id = $data->first(); //ดึงค่าชุดแรก
+        // $l_id_count = $data_id->l_id;  //ชี้ค่าที่ต้องการใช้งาน
 
-    // public function update(Request $request)
+        return view('backend.viewdetail', [
+            'datas' => $data,
+        ]);
+    }
+
+
+
+    public function editAdmin(Request $request)
+    {
+        if(!Session::get('emp_name')) {
+            return redirect()->route('keycloak.login');
+        }
+
+        $hr = HR_Employee::find($request->input('emp_id'));
+        // dd($hr);
+
+        $hr->dss_phone = $request->input('dss_phone');
+        $hr->dss_fax = $request->input('dss_fax');
+        $hr->dss_mail = $request->input('dss_mail');
+        $hr->dss_location = $request->input('dss_location');
+
+
+        // Handle File Upload
+        if ($request->hasFile('image')) {
+            $oldPic = $request->input('oldImage');
+            if (File::exists('http://hr-expertise.dss.local/storage/images/profile'. $oldPic)) {
+                File::delete('http://hr-expertise.dss.local/storage/images/profile' . $oldPic);
+                // ที่เก็บคนละที่
+                // if (File::exists('http://hr-expertise.dss.local/storage/images/profile/'. $oldPic)) {
+                //     File::delete('http://hr-expertise.dss.local/storage/images/profile/' . $oldPic);
+                //  ที่เก็บเดียวกัน
+                // if (File::exists(public_path('storage/images/profile/') . $oldPic)) {
+                //     File::delete(public_path('storage/images/profile/') . $oldPic);
+                // Get just ext
+                $extension = $request->file('image')->getClientOriginalExtension();
+                // Filename to store
+                $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension;
+                // Upload Image
+                $request->file('image')->move('http://hr-expertise.dss.local/storage/images/profile', $fileNameToStore);                
+                // ที่เก็บคนละที่
+                // $request->file('image')->storeAs('http://hr-expertise.dss.local/storage/images/profile/', $fileNameToStore);
+                //  ที่เก็บเดียวกัน
+                // $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
+                // save
+                $hr->image = $fileNameToStore;
+            } else {
+                // Get just ext
+                $extension = $request->file('image')->getClientOriginalExtension();
+                // Filename to store
+                $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension; // ให้ใช้ emp_id ต่อกับ time   
+                // Upload Image
+                $request->file('image')->move('http://hr-expertise.dss.local/storage/images/profile', $fileNameToStore);                
+                // ที่เก็บคนละที่
+                // $request->file('image')->storeAs('http://hr-expertise.dss.local/storage/images/profile/', $fileNameToStore);
+                //  ที่เก็บเดียวกัน
+                // $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
+                // save
+                $hr->image = $fileNameToStore;
+            }
+        }
+
+
+        $hr->save();
+
+        if($hr->save()) {
+            Session::flash('success_msg', 'แก้ไขข้อมูลเรียบร้อยแล้ว');
+            return redirect()->back();
+        } else {
+            return redirect()->back()->with('error_msg', 'ไม่สามารถแก้ไขข้อมูลได้');
+        }
+        
+    }
+
+
+
+    // public function updatePurchaseAll(Request $request)
     // {
-    //     if(!Session::get('emp_name')) {
-    //         return redirect()->route('keycloak.login');
+    //     if(!Session::get('username')) {
+    //         return redirect()->route('login');
     //     }
 
-    //     $link = HR_Employee::find($request->input('l_id_update'));
+    //     $purchase = Purchase::find($request->input('id_update'));
 
-    //     $link->l_name = $request->input('l_name_update');
-    //     $link->l_url = $request->input('l_url_update');
-    //     $link->l_status = $request->input('l_status_update');
+    //     $purchase->cat = $request->input('cat_update');
+    //     $purchase->number = $request->input('number_update');
+    //     $purchase->subject = $request->input('subject_update');
+    //     $purchase->authoredit = Session::get('emp_name');
+    //     $purchase->date = date('Y-m-d', strtotime($request->input('date_update')));
 
-    //     $link->save();
+    //     //check upload new file
+    //     $checkfilehave = $request->file('filename_new');
+    //     // $checkfilenull = '';
+    //     $pathOldFile = $request->input('filename_update');
+    //     // dd($checkfilehave);
+    //     if($checkfilehave !=''){
+    //         File::delete(public_path('storage/pdf/'.$pathOldFile));
+    //         $filename = date('Ymdhis').'.'.request()->file('filename_new')->getClientOriginalExtension();
+    //         request()->file('filename_new')->move('storage/pdf', $filename);
+    //         $purchase->filename = $filename;
+    //     }
 
-    //     if($link->save()) {
+    //     $purchase->save();
+
+    //     if($purchase->save()) {
     //         Session::flash('success_msg', 'แก้ไขข้อมูลเรียบร้อยแล้ว');
     //         return redirect()->back();
     //     } else {
@@ -229,33 +283,6 @@ class DssController extends Controller
     // }
 
 
-
-
-
-    // public function getDatatablesDss(Request $request)
-    // {
-    //         $data = HR_Employee::where('l_status', 1); 
-    //         // dd($data);
-    //         // $Datatables = app('datatables'); //app, datatable เป็นชื่อตัวแปรห้ามแก้ไข
-
-    //         return Datatables::eloquent($data)
-    //         ->filter(function ($query) use ($request) {
-
-
-    //         if ($request->has('l_name')) {
-    //             $query->where('l_name', 'like', "%{$request->l_name}%");
-    //         }
-    //         })
-    //         ->make(true);
-    //     }
-
-    
-    // public function indexgetviewall($id)
-    // {
-    //     $data = HR_Employee::where('l_id',$id)->first();
-    //     // dd($data);          
-    //     return response()->json($data);
-    // }
 
 
 }
