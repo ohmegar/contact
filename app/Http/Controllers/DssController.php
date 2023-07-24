@@ -195,7 +195,7 @@ class DssController extends Controller
         // Handle File Upload
         if ($request->hasFile('image')) {
             $oldPic = $request->input('oldImage');
-            $path_images = public_path('/var/www/hr-expertise/storage/images/profile/');
+            $path_images = base_path('/var/www/hr-expertise/storage/images/profile/');
             if (File::exists($path_images. $oldPic)) {
                 File::delete($path_images. $oldPic);
                 // ที่เก็บคนละที่
