@@ -195,25 +195,14 @@ class DssController extends Controller
         // Handle File Upload
         if ($request->hasFile('image')) {
             $oldPic = $request->input('oldImage');
-            $path_images = base_path('/var/www/hr-expertise/storage/images/profile/');
-            if (File::exists($path_images. $oldPic)) {
-                File::delete($path_images. $oldPic);
-                // ที่เก็บคนละที่
-                // if (File::exists('http://hr-expertise.dss.local/storage/images/profile/'. $oldPic)) {
-                //     File::delete('http://hr-expertise.dss.local/storage/images/profile/' . $oldPic);
-                //  ที่เก็บเดียวกัน
-                // if (File::exists(public_path('storage/images/profile/') . $oldPic)) {
-                //     File::delete(public_path('storage/images/profile/') . $oldPic);
+                if (File::exists(public_path('storage/images/profile/') . $oldPic)) {
+                    File::delete(public_path('storage/images/profile/') . $oldPic);
                 // Get just ext
                 $extension = $request->file('image')->getClientOriginalExtension();
                 // Filename to store
                 $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension;
                 // Upload Image
-                $request->file('image')->move($path_images, $fileNameToStore);                
-                // ที่เก็บคนละที่
-                // $request->file('image')->storeAs('http://hr-expertise.dss.local/storage/images/profile/', $fileNameToStore);
-                //  ที่เก็บเดียวกัน
-                // $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
+                $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
                 // save
                 $hr->image = $fileNameToStore;
             } else {
@@ -222,11 +211,7 @@ class DssController extends Controller
                 // Filename to store
                 $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension; // ให้ใช้ emp_id ต่อกับ time   
                 // Upload Image
-                $request->file('image')->move($path_images, $fileNameToStore);                
-                // ที่เก็บคนละที่
-                // $request->file('image')->storeAs('http://hr-expertise.dss.local/storage/images/profile/', $fileNameToStore);
-                //  ที่เก็บเดียวกัน
-                // $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
+                $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
                 // save
                 $hr->image = $fileNameToStore;
             }
