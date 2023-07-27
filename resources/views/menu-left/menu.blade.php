@@ -30,8 +30,8 @@
 
 
 
-{{-- 12744 โอห์ม | 16103 เบ้น | 21664 เชียร์  |  21564  จ๋า --}}
-@if (Session::get('emp_id') == '12744' || Session::get('emp_id') == '16103' || Session::get('emp_id') == '21564' || Session::get('emp_id') == '21664')
+{{-- 12744 โอห์ม | 16103 เบ้น | 21664 เชียร์ | 15404 พี่แมน | 21564  จ๋า --}}
+@if (Session::get('emp_id') == '12744' || Session::get('emp_id') == '16103' || Session::get('emp_id') == '21564' || Session::get('emp_id') == '21664' || Session::get('emp_id') == '15404')
 
 <hr>
 <p style="color:rgb(255, 255, 255)" align="center">เมนูสำหรับ IT</p>
