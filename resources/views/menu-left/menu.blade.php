@@ -46,8 +46,8 @@
 @endif
 
 
-{{-- กลุ่มพัสดุเท่านั้น --}}
-@if (Session::get('emp_id') == '12744' || Session::get('emp_id') == '16103' || Session::get('emp_id') == '21564' || Session::get('emp_id') == '21664')
+{{-- กลุ่มพัสดุเท่านั้น org_id = 1619 | 12744 โอห์ม | 16103 เบ้น | 21664 เชียร์  |  21564  จ๋า --}}
+{{-- @if (Session::get('emp_id') == '12744' || Session::get('emp_id') == '16103' || Session::get('emp_id') == '21564' || Session::get('emp_id') == '21664' || Session::get('org_id') == '1619')
 
 <hr>
 <p style="color:rgb(255, 255, 255)" align="center">เมนูสำหรับกลุ่มพัสดุ</p>
@@ -59,4 +59,4 @@
     </li>
 </ul>
 
-@endif
+@endif --}}
