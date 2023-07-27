@@ -49,8 +49,8 @@ Route::middleware(['agent'])->group(function () {
         Route::get('/so', [FrontendController::class, 'so'])->name('so');
         Route::get('/data-so', [FrontendController::class,'getDataSo'])->name('getDataSo');
 
-        Route::get('/info-form', function () {
-            return view('frontend.info-form');
+        Route::get('/announcement', function () {
+            return view('frontend.announcement');
         });
 
 
@@ -68,8 +68,17 @@ Route::middleware(['agent'])->group(function () {
                         Route::get('/backend/getviewall/{id}', [DssController::class,'getviewall'])->name('getviewall');
                         Route::get('/backend/editAdmin/{id}', [DssController::class, 'viewDetailAdmin'])->name('viewDetailAdmin');
                         Route::post('/backend/editAdmin/', [DssController::class,'editAdmin'])->name('editAdmin');
-                        
-                        
+
+                        //ViewUserOwn
+                        Route::get('/backend/info', [DssController::class,'viewDetailProcurement'])->name('viewDetailProcurement');
+                        Route::post('/backend/editinfo/', [DssController::class,'editinfo'])->name('editinfo');
+                                
+                        //ViewProcurement
+                        // Route::get('/backend/viewProcurement', [DssController::class, 'viewProcurement'])->name('viewProcurement');
+                        // Route::get('/data-admin', [DssController::class,'getDatatablesAdmin'])->name('getDatatablesAdmin');
+                        // Route::get('/backend/getviewall/{id}', [DssController::class,'getviewall'])->name('getviewall');
+                        // Route::get('/backend/editAdmin/{id}', [DssController::class, 'viewDetailAdmin'])->name('viewDetailAdmin');
+                        // Route::post('/backend/editAdmin/', [DssController::class,'editAdmin'])->name('editAdmin');
                         
                     });    
             });

@@ -163,6 +163,8 @@ class DssController extends Controller
     //     ]);
     // }
 
+
+    // IT จัดการข้อมูล
     public function viewDetailAdmin($id)
     {    
         $data = P_EMP_ALL::where('emp_id',$id)->get();
@@ -229,6 +231,72 @@ class DssController extends Controller
         
     }
 
+
+    // เจ้าของข้อมูลจัดการได้เอง
+    public function viewDetailProcurement()
+    {    
+        $data = P_EMP_ALL::where('emp_id',Session::get('emp_id'))->get();
+        // dd($data); 
+        // $data_id = $data->first(); //ดึงค่าชุดแรก
+        // $l_id_count = $data_id->l_id;  //ชี้ค่าที่ต้องการใช้งาน
+
+        return view('backend.info', [
+            'datas' => $data,
+        ]);
+    }
+
+    
+    public function editinfo(Request $request)
+    {
+        if(!Session::get('emp_name')) {
+            return redirect()->route('keycloak.login');
+        }
+
+        $hr = HR_Employee::find(Session::get('emp_id'));
+        // dd($hr);
+
+        $hr->dss_phone = $request->input('dss_phone');
+        $hr->dss_fax = $request->input('dss_fax');
+        $hr->dss_mail = $request->input('dss_mail');
+        $hr->dss_location = $request->input('dss_location');
+
+
+        // Handle File Upload
+        if ($request->hasFile('image')) {
+            $oldPic = $request->input('oldImage');
+                if (File::exists(public_path('storage/images/profile/') . $oldPic)) {
+                    File::delete(public_path('storage/images/profile/') . $oldPic);
+                // Get just ext
+                $extension = $request->file('image')->getClientOriginalExtension();
+                // Filename to store
+                $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension;
+                // Upload Image
+                $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
+                // save
+                $hr->image = $fileNameToStore;
+            } else {
+                // Get just ext
+                $extension = $request->file('image')->getClientOriginalExtension();
+                // Filename to store
+                $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension; // ให้ใช้ emp_id ต่อกับ time   
+                // Upload Image
+                $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
+                // save
+                $hr->image = $fileNameToStore;
+            }
+        }
+
+
+        $hr->save();
+
+        if($hr->save()) {
+            Session::flash('success_msg', 'แก้ไขข้อมูลเรียบร้อยแล้ว');
+            return redirect()->back();
+        } else {
+            return redirect()->back()->with('error_msg', 'ไม่สามารถแก้ไขข้อมูลได้');
+        }
+        
+    }
 
 
     // public function updatePurchaseAll(Request $request)
