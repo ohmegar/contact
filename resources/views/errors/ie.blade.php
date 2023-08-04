@@ -89,7 +89,7 @@
 <body>
     <div id="notfound">
         <div class="notfound">
-            <h1>ระบบนี้ไม่รองรับการใช้งานผ่านบราวเซอร์ <span>Internet Explorer (IE)</span> <br>ที่ท่านใช้อยู่ในปัจจุบัน</h1>
+            <h1>ระบบนามสงเคราะห์ วศ. ไม่รองรับการใช้งานผ่านบราวเซอร์ <span>Internet Explorer (IE)</span> <br>ที่ท่านใช้อยู่ในปัจจุบัน</h1>
             <h3>เราขอแนะนำให้ใช้งานระบบนี้ผ่าน</h3>
             <p>
                 <span>Google Chrome

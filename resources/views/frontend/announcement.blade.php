@@ -1,5 +1,5 @@
 @section('title')
-    | แนวทางการใช้งาน
+    | แจ้งเพื่อโปรดทราบก่อน
 @endsection
 
 @include('frontend.head')

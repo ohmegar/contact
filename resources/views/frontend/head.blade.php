@@ -53,14 +53,14 @@
 
 
 <!-- Google tag (gtag.js) -->
-{{-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HR7992QWX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DDRWVTM803"></script>
 <script>
    window.dataLayer = window.dataLayer || [];
    function gtag(){dataLayer.push(arguments);}
    gtag('js', new Date());
 
-   gtag('config', 'G-6HR7992QWX');
-</script> --}}
+   gtag('config', 'G-DDRWVTM803');
+</script>
 
 
    </head>

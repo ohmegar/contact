@@ -164,15 +164,10 @@
 <!-- /.card -->
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.js"></script>
-<script>
-        var clipboard = new ClipboardJS('.btn');
-</script>
 
-
-@section('modal')
+{{-- @section('modal')
     @include('backend.modals.modal-copyLink')
-@endsection
+@endsection --}}
 
 
 @section('scripts')

@@ -928,12 +928,12 @@ ul.cont li {
      border-style: solid;
 }
      .snip1355:after {
-     top: 25%;
-     left: 50%;
+     top: 30%;
+     left: 40%;
      -webkit-transform: translate(-40%, 100%);
      transform: translate(-40%, 100%);
      border-width: 70px 200px;
-     border-color: transparent #351abc #4b1abc #2f1598;
+     border-color: transparent #0e024b #1c0552 #0c0334;
 }
      .snip1355:before {
      bottom: 0%;
@@ -1142,7 +1142,7 @@ figure.snip1219 {
      border-color:rgba(201, 201, 201, 0.2)
 }
 
-
+/* ปรับแต่งโชว์ในdatatable ให้ห่างขอบในcolum1 */
 tr.odd td:first-child,
 tr.even td:first-child {
      padding-left: 2em;

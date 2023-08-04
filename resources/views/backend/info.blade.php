@@ -37,12 +37,12 @@
                     </div>
                 </div>
 
-                <div class="callout callout-danger info-box bg-dark">
+                <div class="callout callout-warning info-box bg-dark">
                     <dl>
                         <div class="lable">
                             <h6>
                                 <dt>
-                                    ส่วนที่ 1 บค.สล. (เป็นผู้รับผิดชอบข้อมูล) <br>ท่านไม่สามารถแก้ไขได้ด้วยตนเอง โปรดติดต่อผู้รับผิดชอบข้อมูล
+                                    <h5>ส่วนที่ 1 บค.สล. (เป็นผู้รับผิดชอบข้อมูล)</h5>ท่านไม่สามารถแก้ไขได้ด้วยตนเอง โปรดติดต่อผู้รับผิดชอบข้อมูล
                                 </dt>
                             </h6>
                         </div>
@@ -104,7 +104,7 @@
                         <div class="lable">
                             <h6>
                                 <dt>
-                                    ส่วนที่ 2 <br>ท่านสามารถแก้ไขได้ด้วยตนเอง
+                                    <h5>ส่วนที่ 2</h5>ท่านสามารถแก้ไขได้ด้วยตนเอง
                                 </dt>
                             </h6>
                         </div>
@@ -155,7 +155,7 @@
     <!-- /.card-body -->
     
     <div class="modal-footer">
-        <button type="button" class="btn btn-danger btn-lg" onclick="window.location.href='{{ url('/backend/viewAdmin')}}'"><i class="fas fa-home"></i> กลับหน้าหลัก</button>
+        <button type="button" class="btn btn-danger btn-lg" onclick="window.location.href='{{ url('/backend')}}'"><i class="fas fa-home"></i> กลับหน้าหลัก</button>
         <button type="submit" class="btn btn-success btn-lg"><i class="fas fa-save"></i> ยืนยันการแก้ไข</button>
     </div>
 </form>
@@ -164,15 +164,10 @@
 <!-- /.card -->
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.js"></script>
-<script>
-        var clipboard = new ClipboardJS('.btn');
-</script>
 
-
-@section('modal')
+{{-- @section('modal')
     @include('backend.modals.modal-copyLink')
-@endsection
+@endsection --}}
 
 
 @section('scripts')

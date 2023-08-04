@@ -34,11 +34,11 @@
 @if (Session::get('emp_id') == '12744' || Session::get('emp_id') == '16103' || Session::get('emp_id') == '21564' || Session::get('emp_id') == '21664' || Session::get('emp_id') == '15404')
 
 <hr>
-<p style="color:rgb(255, 255, 255)" align="center">เมนูสำหรับ IT</p>
 <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-compact" data-widget="treeview" role="menu" data-accordion="false">
+    <a href="#" class="nav-link" align="left"><p style="color:rgb(255, 255, 255)">ส่วนสำหรับเจ้าหน้าที่ IT เท่านั้น</p></a>
     <li class="nav-item has-treeview {{ Request::is('backend/viewAdmin') ? 'menu-open' : '' }}">
-        <a href="{{ url('/backend/viewAdmin')}}" class="nav-link {{ Request::is('backend/viewAdmin') ? 'active' : '' }} or {{ Request::is('backend/vs/*') ? 'active' : '' }}">
-            <p title="จัดการได้คือ โอห์ม เบ้น จ๋า เชียร์"><i class="fa fa-users-cog" style="color:rgb(8, 242, 74)"></i> จัดการข้อมูลส่วนตัว (ทั้งหมด)</p>
+        <a href="{{ url('/backend/viewAdmin')}}" class="nav-link {{ Request::is('backend/viewAdmin') ? 'active' : '' }} or {{ Request::is('backend/editAdmin/*') ? 'active' : '' }}">
+            <p title="จัดการได้คือ โอห์ม เบ้น พี่แมน จ๋า เชียร์"><i class="fa fa-users-cog" style="color:rgb(8, 242, 74)"></i> จัดการข้อมูลส่วนตัว (ทั้งหมด)</p>
         </a>
     </li>
 </ul>

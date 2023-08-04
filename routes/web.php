@@ -72,13 +72,6 @@ Route::middleware(['agent'])->group(function () {
                         //ViewUserOwn
                         Route::get('/backend/info', [DssController::class,'viewDetailProcurement'])->name('viewDetailProcurement');
                         Route::post('/backend/editinfo/', [DssController::class,'editinfo'])->name('editinfo');
-                                
-                        //ViewProcurement
-                        // Route::get('/backend/viewProcurement', [DssController::class, 'viewProcurement'])->name('viewProcurement');
-                        // Route::get('/data-admin', [DssController::class,'getDatatablesAdmin'])->name('getDatatablesAdmin');
-                        // Route::get('/backend/getviewall/{id}', [DssController::class,'getviewall'])->name('getviewall');
-                        // Route::get('/backend/editAdmin/{id}', [DssController::class, 'viewDetailAdmin'])->name('viewDetailAdmin');
-                        // Route::post('/backend/editAdmin/', [DssController::class,'editAdmin'])->name('editAdmin');
                         
                     });    
             });
