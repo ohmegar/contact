@@ -192,6 +192,7 @@ class DssController extends Controller
         $hr->dss_fax = $request->input('dss_fax');
         $hr->dss_mail = $request->input('dss_mail');
         $hr->dss_location = $request->input('dss_location');
+        $hr->show_order = $request->input('show_order');
 
 
         // Handle File Upload
