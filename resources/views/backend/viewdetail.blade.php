@@ -147,7 +147,7 @@
                     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         {{ Form::label('show_order','ลำดับที่ต้องการแสดงข้อมูล  :')}}  <span style="color:rgb(255, 0, 0)">ส่วนนี้เฉพาะ IT เท่านั้นที่เห็น </span>
                         {{-- {{ Form::textarea('dss_location', null, ['class' => 'form-control','id'=>'dss_location', 'rows'=> 1,'hidden']) }} --}}
-                        <input type="text" class="form-control" name="show_order" id="show_order"  placeholder="ลำดับที่ต้องการแสดงข้อมูล" value="{{$data->show_order}}" /> 
+                        <input type="number" class="form-control" name="show_order" id="show_order"  placeholder="ลำดับที่ต้องการแสดงข้อมูล" value="{{$data->show_order}}" pattern="[0-9]*"/> 
                     </div>
                 </div>
 
