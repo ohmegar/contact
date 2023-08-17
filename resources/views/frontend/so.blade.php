@@ -43,7 +43,8 @@
                                     <tr align="center" style="background-image: linear-gradient(to right, #3f033f,#3f033f); color: #FFF">
                                         <th>กอง/สำนัก</th>
                                         <th>กลุ่ม</th>
-                                        <th style="width: 20%">ชื่อ-นามสกุล</th>
+                                        <th style="width: 5%">#</th>
+                                        <th style="width: 15%">ชื่อ-นามสกุล</th>
                                         <th style="width: 15%">ภาพ</th>
                                         <th style="width: 12%">ตำแหน่ง</th>
                                         <th style="width: 10%">สถานะ</th>

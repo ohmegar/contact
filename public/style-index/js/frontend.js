@@ -428,7 +428,7 @@ var tbview_so = $('#tbview_so').DataTable({
     processing: true,
     serverSide: true,
     // order: [2, 'ASC'], //คำสั่งให้เรียงจากมากไปน้อยของคอลัม 5 นับ 012345
-    order: [[0, 'ASC'],[1, 'ASC'],[5, 'ASC']], //คำสั่งให้เรียงจากมากไปน้อยของคอลัม 5 นับ 012345
+    order: [[0, 'ASC'],[1, 'ASC'],[2, 'ASC'],[6, 'ASC']], //คำสั่งให้เรียงจากมากไปน้อยของคอลัม 5 นับ 012345
     rowGroup: {
         dataSrc: ['division','sub_division'],
         emptyDataGroup: 'ส่วนกลางของสังกัด', //ไม่แสดงข้อความถ้าไม่มีข้อมูล
@@ -488,6 +488,10 @@ var tbview_so = $('#tbview_so').DataTable({
         data: 'sub_division',
         name: 'sub_division'
     },    
+    {
+        data: 'show_order',
+        name: 'show_order'
+    },
     {
         data: 'emp_name',
         name: 'emp_name'
@@ -552,6 +556,17 @@ var tbview_so = $('#tbview_so').DataTable({
         {
             targets: 2,
             render: function (data, type, row) {
+                if (row.show_order == null){
+                    var data = '';                    
+                } else {
+                    var data = '<center>' + row.show_order + '</center>';                    
+                }
+                return data;
+            },
+        },
+        {
+            targets: 3,
+            render: function (data, type, row) {
                 if (row.english_name == null){
                     var data =  '<span style="color:blue">'+row.pfix_name + row.emp_name+'</span>';                                            
                 } else {
@@ -561,7 +576,7 @@ var tbview_so = $('#tbview_so').DataTable({
             },
         },
         {
-            targets: 3,
+            targets: 4,
             render: function (data, type, row) {
                 if (row.image == null){
                     var data = '<center><img src="style-index/images/nophoto.png" class="img-dss"></img></center>';
@@ -572,7 +587,7 @@ var tbview_so = $('#tbview_so').DataTable({
             },
         },            
         {
-            targets: 4,
+            targets: 5,
             render: function (data, type, row) {
                 if (row.position_view == 'นักบริหาร'){
                     var data = '<center> อธิบดีกรมวิทยาศาสตร์บริการ </center>';    
@@ -585,14 +600,14 @@ var tbview_so = $('#tbview_so').DataTable({
             },
         },
         {
-            targets: 5,
+            targets: 6,
             render: function (data, type, row) {
                 var data = '<center>' + row.emp_type_name + '</center>';                    
                 return data;
             },
         },
         {
-            targets: 6,
+            targets: 7,
             render: function (data, type, row) {
                 if (row.dss_phone == null){
                     var data = '<center> - </center>';                    
@@ -603,7 +618,7 @@ var tbview_so = $('#tbview_so').DataTable({
             },
         },
         {
-            targets: 7,
+            targets: 8,
             render: function (data, type, row) {
                 if (row.dss_fax == null){
                     var data = '<center> - </center>';                    
@@ -614,7 +629,7 @@ var tbview_so = $('#tbview_so').DataTable({
             },
         },
         {
-            targets: 8,
+            targets: 9,
             render: function (data, type, row) {
                 if (row.dss_mail == null){
                     var data = '<center> - </center>';                    
@@ -625,7 +640,7 @@ var tbview_so = $('#tbview_so').DataTable({
             },
         },
         {
-            targets: 9,
+            targets: 10,
             render: function (data, type, row) {
                 if (row.dss_location == null){
                     var data = '<center> - </center>';                    
