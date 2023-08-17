@@ -109,7 +109,7 @@ class DssController extends Controller
     public function getviewall($id)
     {
         if(!Session::get('username')) {
-            return redirect()->route('login');
+            return redirect()->route('keycloak.login');
         }
 
         $data = P_EMP_ALL::where('id',$id)->first();

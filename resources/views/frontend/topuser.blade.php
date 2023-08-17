@@ -8,7 +8,7 @@
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="{{ url('/') }}"><img src="{{ asset('style-index/images/logo.png') }}" alt="#" /></a>
+                              <a href="{{ url('/') }}"><img src="{{ asset('images/logo-top.png') }}" alt="#" /></a>
                            </div>
                         </div>
                      </div>

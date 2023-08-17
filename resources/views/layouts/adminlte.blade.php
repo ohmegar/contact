@@ -92,7 +92,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="#" class="brand-link">
-        <img src="{{ asset('style-index/images/logo-white.png') }}" alt="DSS" width="100%">
+        <img src="{{ asset('images/logo-top-white.png') }}" alt="DSS" width="100%">
         {{-- <span class="brand-text font-weight-light">{{ config('app.name', '') }}</span> --}}
       </a>
 
