@@ -97,11 +97,10 @@
       </div> 
 
 
+<div id="" align="center" style="font-size: 18px; color:rgb(255, 255, 255)">- ข้อมูลที่ปรากฏนี้มาจากระบบ Back Office DSS -</div>
+<div id="clockbox" align="center" style="font-size: 16px; color:rgb(255, 255, 255)"></div>
 
 
-
-
-<div id="clockbox" align="center" style="font-size: 18px; color:rgb(255, 255, 255)"></div>
 
 </div>
 
@@ -129,7 +128,7 @@
         if(nmin <= 9) {nmin = "0" +nmin;}
         if(nsec <= 9) {nsec = "0" +nsec;}
 
-        document.getElementById('clockbox').innerHTML="ข้อมูล ณ วัน"+tday[nday]+"ที่ "+ndate+" "+tmonth[nmonth]+" "+nyeara+"<br> เวลา "+nhour+":"+nmin+":"+nsec+" น.";
+        document.getElementById('clockbox').innerHTML="ณ วัน"+tday[nday]+"ที่ "+ndate+" "+tmonth[nmonth]+" "+nyeara+"<br> เวลา "+nhour+":"+nmin+":"+nsec+" น.";
 
         setTimeout("GetClock()", 1000);
     }
