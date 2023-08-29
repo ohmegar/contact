@@ -19,3 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/user/{engname}', [EmployeeController::class, 'user']);
+
+Route::get('/userall', [EmployeeController::class, 'userall']);
