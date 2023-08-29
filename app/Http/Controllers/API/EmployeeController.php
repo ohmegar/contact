@@ -32,7 +32,7 @@ class EmployeeController extends Controller
         return response()->json($employee);
     }
 
-    public function userall($engname)
+    public function userall()
     {
         $employee = P_EMP_ALL::select('*')
             ->get();
