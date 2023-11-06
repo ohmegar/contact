@@ -26,13 +26,16 @@
                                     <a href="{{ url('/') }}" class="nav-link {{ Request::is('/') ? 'active' : '' }}"><i class="fa fa-home"></i> หน้าหลัก  </a>
                                  </li> 
                                  <li class="nav-item">
-                                    <a href="{{ url('/sn') }}" class="nav-link {{ Request::is('sn') ? 'active' : '' }}"><i class="fa fa-search"></i> ค้นหาตามชื่อ-นามสกุล</a>
+                                    <a href="{{ url('/sn') }}" class="nav-link {{ Request::is('sn') ? 'active' : '' }}"><i class="fa fa-user"></i> ดูชื่อ-นามสกุล</a>
                                  </li>
                                  <li class="nav-item">
-                                    <a href="{{ url('/st') }}" class="nav-link {{ Request::is('st') ? 'active' : '' }}"><i class="fa fa-search"></i> ค้นหาตามเบอร์โทร</a>
+                                    <a href="{{ url('/st') }}" class="nav-link {{ Request::is('st') ? 'active' : '' }}"><i class="fa fa-phone"></i> ดูเบอร์โทร</a>
                                  </li>
                                  <li class="nav-item">
-                                    <a href="{{ url('/so') }}" class="nav-link {{ Request::is('so') ? 'active' : '' }}"><i class="fa fa-search"></i> ค้นหาตามโครงสร้าง</a>
+                                    <a href="{{ url('/so') }}" class="nav-link {{ Request::is('so') ? 'active' : '' }}"><i class="fa fa-sitemap"></i> ดูโครงสร้าง</a>
+                                 </li>
+                                 <li class="nav-item">
+                                    <a href="{{ url('/center') }}" class="nav-link {{ Request::is('center') ? 'active' : '' }}"><i class="fa fa-map-marker"></i> ส่วนกลาง</a>
                                  </li>
                                  <li class="nav-item">
                                     <a href="{{ url(asset('/manual/manualadmin.pdf')) }}" target="_NEW" class="nav-link"><i class="fa fa-book"></i> คู่มือการใช้งาน</a>

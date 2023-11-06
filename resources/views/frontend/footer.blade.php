@@ -16,6 +16,7 @@ style="y-index: -1;width: 10vw;bottom: 500;right: 0;">
                               <li><i class="fa fa-phone"></i> โทรศัพท์ 0-2201-7513</li>
                               {{-- <li><a href="https://lookerstudio.google.com/u/0/reporting/34beb533-005a-4190-bcc5-2da0fde3e3f6/page/6zXD" target="_new"><i class="fa fa-bar-chart"></i> สถิติการใช้งาน</a></li> --}}
                               <li><i class="fa fa-envelope" aria-hidden="true"></i> อีเมลติดต่อสอบถาม  helpdesk@dss.go.th</li>
+                              <li><a href="https://www.dss.go.th" target="_new"><i class="fa fa-globe"></i> เว็บไซต์กรมวิทยาศาสตร์บริการ</a></li>
                               <li><a href="{{ url('/login') }}"><i class="fa fa-user"></i> เข้าสู่ระบบ (สำหรับเจ้าหน้าที่ Admin เท่านั้น)  </a></li>
                            </ul>
                         </div>

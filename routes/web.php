@@ -53,6 +53,10 @@ Route::middleware(['agent'])->group(function () {
             return view('frontend.announcement');
         });
 
+        Route::get('/center', function () {
+            return view('frontend.center');
+        });
+
 
 // Check login by Keycloak 
         Route::group(['middleware' => 'keycloak-web'], function () {
