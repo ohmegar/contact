@@ -1,5 +1,5 @@
 @section('title')
-    | แจ้งเพื่อโปรดทราบก่อน
+    | เบอร์ส่วนกลาง
 @endsection
 
 @include('frontend.head')
@@ -71,7 +71,7 @@
                             </tr>
                             <tr>
                                 <td style="width:20%" align="center">10</td>
-                                <td style="width:50%" align="center">ห้องประชุม คม.</td>
+                                <td style="width:50%" align="center">ห้องประชุม คอ.</td>
                                 <td style="width:30%" align="center">7214</td>
                             </tr>
                             <tr>
