@@ -29,22 +29,20 @@
 @endif
 
 
-
-{{-- 12744 โอห์ม | 16103 เบ้น | 21664 เชียร์ | 15404 พี่แมน | 21564  จ๋า --}}
-@if (Session::get('emp_id') == '12744' || Session::get('emp_id') == '16103' || Session::get('emp_id') == '21564' || Session::get('emp_id') == '21664' || Session::get('emp_id') == '15404')
-
+@can('admin')
+{{-- 12744 โอห์ม | 16103 เบ้น | 21664 เชียร์ | 15404 พี่แมน | 21564  จ๋า | 17424  ทรัพย์ --}}
+{{-- @if (Session::get('emp_id') == '12744' || Session::get('emp_id') == '16103' || Session::get('emp_id') == '21564' || Session::get('emp_id') == '21664' || Session::get('emp_id') == '15404' || Session::get('emp_id') == '17424') --}}
 <hr>
 <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-compact" data-widget="treeview" role="menu" data-accordion="false">
-    <a href="#" class="nav-link" align="left"><p style="color:rgb(255, 255, 255)">ส่วนสำหรับเจ้าหน้าที่ IT เท่านั้น</p></a>
+    <a href="#" class="nav-link" align="left"><p style="color:rgb(255, 255, 255)">เมนูสำหรับ Admin เท่านั้น</p></a>
     <li class="nav-item has-treeview {{ Request::is('backend/viewAdmin') ? 'menu-open' : '' }}">
         <a href="{{ url('/backend/viewAdmin')}}" class="nav-link {{ Request::is('backend/viewAdmin') ? 'active' : '' }} or {{ Request::is('backend/editAdmin/*') ? 'active' : '' }}">
-            <p title="จัดการได้คือ โอห์ม เบ้น พี่แมน จ๋า เชียร์"><i class="fa fa-users-cog" style="color:rgb(8, 242, 74)"></i> จัดการข้อมูลส่วนตัว (ทั้งหมด)</p>
+            <p title="เมนูนี้จะเห็นเฉพาะ Admin เท่านั้น"><i class="fa fa-users-cog" style="color:rgb(8, 242, 74)"></i> จัดการข้อมูลบุคคลากร ทั้งหมด</p>
         </a>
     </li>
 </ul>
-
-@endif
-
+{{-- @endif --}}
+@endcan
 
 {{-- กลุ่มพัสดุเท่านั้น org_id = 1619 | 12744 โอห์ม | 16103 เบ้น | 21664 เชียร์  |  21564  จ๋า --}}
 {{-- @if (Session::get('emp_id') == '12744' || Session::get('emp_id') == '16103' || Session::get('emp_id') == '21564' || Session::get('emp_id') == '21664' || Session::get('org_id') == '1619')
@@ -58,5 +56,4 @@
         </a>
     </li>
 </ul>
-
 @endif --}}
