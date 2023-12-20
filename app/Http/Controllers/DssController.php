@@ -58,7 +58,7 @@ class DssController extends Controller
 
     public function getviewall($id)
     {
-        if(!Session::get('username')) {
+        if(!Session::get('emp_name')) {
             return redirect()->route('keycloak.login');
         }
 

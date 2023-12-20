@@ -30,7 +30,7 @@ if (!empty($proxy_schema)) {
 }
 
 
-Route::get('/UGcKTPxyqsNLp0QXW4XT72NBIbodsogsXK25OJYsxslqRhksNw9lFWYffWHy', function () {
+Route::get('/703fe-58b6-898941b-b939de7-66220-bec7', function () {
     return view('errors.ie');
 })->name('ie');
 
@@ -61,6 +61,11 @@ Route::middleware(['agent'])->group(function () {
     // Check login by Keycloak 
     Route::group(['middleware' => 'keycloak-web'], function () {
         Route::get('/keycloak/session', [KeycloakController::class, 'keycloakSession']);
+
+        Route::get('/703fe-58b6-898941b-b939de7-66220-bec7', function () {
+            return view('errors.permission');
+        })->name('permission');
+
 
         Route::prefix('')->group(function () {
             Route::name('')->group(function () {

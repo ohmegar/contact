@@ -13,15 +13,15 @@ class KeycloakController extends Controller
     public function keycloakSession()
     {
         //  เรียกใช้ external API ด้วย Guzzle
-        // $response = Http::get('http://api.dss.local/api/employee/eng-name/' . auth()->user()->name);
         $response = Http::get('http://contact.dss.local/api/user/' . auth()->user()->name);
-        // $response = Http::get('http://localhost/contact/public/api/user/' . auth()->user()->name);
         $emp = json_decode($response, true);
 
-        if (empty($emp)) {
+        if ($emp == null) {
             // แจ้งเตือนไม่พบข้อมูลในระบบบุคลากร
-            Session::flush();
-            return redirect()->route('keycloak.logout');
+            session(['status' => 405, 'msg' => 'ท่านไม่มีสิทธิ์เข้าใช้งานระบบนี้']);
+
+            return redirect()->route('permission');
+
         } else {
             // หากพบข้อมูล ระบบจะสร้าง session emp_id สำหรับเรียกใช้งาน
             session([
@@ -32,8 +32,8 @@ class KeycloakController extends Controller
                 'div_id' => $emp['div_id'], //รหัสกอง
                 'division' => $emp['division'], //ชื่อกอง
                 'org_id' => $emp['org_id'],  //รหัสกลุ่ม
-                'sub_division' => $emp['sub_division']
-            ]);   //ชื่อกลุ่ม
+                'sub_division' => $emp['sub_division'] //ชื่อกลุ่ม
+            ]);   
 
             return redirect()->route('backendindex');
         }
