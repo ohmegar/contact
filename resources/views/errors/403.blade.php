@@ -11,13 +11,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>403 Error Page</title>
 </head>
+
 <body>
-    <div class="container mt-5 pt-5">
-        <div class="alert alert-danger text-center">
-            <h2 class="display-3">403</h2>
-            <p class="display-5">Sorry , Forbidden</p>
+
+
+        <div style="text-align: center" class="card-body">
+            <h1>ท่านไม่มีสิทธิ์เข้าใช้งานระบบนี้<br> โปรดติดต่อ ทส.สท. โทร 7516</h1><br>
+            <p id="counter" class="text-danger"></p><br>
+            หรือคลิกที่ปุ่มนี้<br>
+            <a href="{{ url('/logout') }}" class="btn btn-primary"><i class="fa fa-home"></i> กลับหน้าหลัก</a>
         </div>
-    </div>
+
+        <script type="text/javascript">
+            $(function() {
+                const Toast = Swal.mixin({
+                    toast: false,
+                    position: 'center',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                Toast.fire({
+                    icon: 'error',
+                    title: 'ท่านไม่มีสิทธิ์เข้าใช้งานระบบนี้',
+                });
+
+            });
+        </script>
+        <script>
+            function startCountdown() {
+                let counter = 5;
+                const interval = setInterval(() => {
+                    counter--;
+
+                    document.getElementById('counter').innerHTML = `ระบบจะดำเนินการกลับหน้าหลักในอีก ${counter} วินาที`
+
+                    if (counter < 0) {
+                        document.getElementById('counter').innerHTML = '';
+                        clearInterval(interval);
+                        window.location.href = "{{ url('/logout') }}";
+                    }
+                }, 1000);
+            }
+            startCountdown();
+        </script>
+
+
 </body>
 
 

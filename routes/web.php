@@ -6,7 +6,6 @@ use App\Http\Controllers\DssController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\KeycloakController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes

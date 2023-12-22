@@ -15,31 +15,36 @@ class DssController extends Controller
 
     public function backendindex()
     {
-        if(!Session::get('emp_name')) {
+        if (!Session::get('emp_name')) {
             return redirect()->route('keycloak.login');
         }
 
-        return view('backend.home', [
-        ]);
+        return view('backend.home', []);
     }
 
 
 
     public function getDatatablesAdmin(Request $request)
     {
-        if(!Session::get('emp_name')) {
+        if (!Session::get('emp_name')) {
             return redirect()->route('keycloak.login');
         }
 
         $data = P_EMP_ALL::select('emp_id', 'pfix_name', 'emp_name', 'pfix_name_e', 'english_name', 'image', 'division', 'sub_division', 'position_view', 'emp_type_name', 'dss_phone', 'dss_fax', 'dss_mail', 'dss_location', 'show_order');
         // dd($data);
-        // dd($request->searchName);
+        // dd($request->search);
 
-            return Datatables::eloquent($data)
+        return Datatables::eloquent($data)
             ->filter(function ($query) use ($request) {
-            if ($request->has('emp_name')) {
-                $query->where('emp_name', 'like', "%{$request->emp_name}%");
-            }
+                if ($request->has('emp_name')) {
+                    $query->where('emp_name', 'like', "%{$request->emp_name}%");
+                }
+                if ($request->has('english_name')) {
+                    $query->where('english_name', 'like', "%{$request->english_name}%");
+                }
+                if ($request->has('emp_id')) {
+                    $query->where('emp_id', 'like', "%{$request->emp_id}%");
+                }
             })
             ->make(true);
     }
@@ -47,10 +52,10 @@ class DssController extends Controller
 
     public function viewAdmin()
     {
-        if(!Session::get('emp_name')) {
+        if (!Session::get('emp_name')) {
             return redirect()->route('keycloak.login');
         }
-        
+
         return view('backend.viewAdmin');
     }
 
@@ -58,11 +63,11 @@ class DssController extends Controller
 
     public function getviewall($id)
     {
-        if(!Session::get('emp_name')) {
+        if (!Session::get('emp_name')) {
             return redirect()->route('keycloak.login');
         }
 
-        $data = P_EMP_ALL::where('id',$id)->first();
+        $data = P_EMP_ALL::where('id', $id)->first();
         // dd($data);          
         return response()->json($data);
     }
@@ -73,8 +78,8 @@ class DssController extends Controller
 
     // IT admin จัดการข้อมูล
     public function viewDetailAdmin($id)
-    {    
-        $data = P_EMP_ALL::where('emp_id',$id)->get();
+    {
+        $data = P_EMP_ALL::where('emp_id', $id)->get();
         // dd($data); 
         // $data_id = $data->first(); //ดึงค่าชุดแรก
         // $l_id_count = $data_id->l_id;  //ชี้ค่าที่ต้องการใช้งาน
@@ -88,7 +93,7 @@ class DssController extends Controller
 
     public function editAdmin(Request $request)
     {
-        if(!Session::get('emp_name')) {
+        if (!Session::get('emp_name')) {
             return redirect()->route('keycloak.login');
         }
 
@@ -105,8 +110,8 @@ class DssController extends Controller
         // Handle File Upload
         if ($request->hasFile('image')) {
             $oldPic = $request->input('oldImage');
-                if (File::exists(public_path('storage/images/profile/') . $oldPic)) {
-                    File::delete(public_path('storage/images/profile/') . $oldPic);
+            if (File::exists(public_path('storage/images/profile/') . $oldPic)) {
+                File::delete(public_path('storage/images/profile/') . $oldPic);
                 // Get just ext
                 $extension = $request->file('image')->getClientOriginalExtension();
                 // Filename to store
@@ -130,20 +135,19 @@ class DssController extends Controller
 
         $hr->save();
 
-        if($hr->save()) {
+        if ($hr->save()) {
             Session::flash('success_msg', 'แก้ไขข้อมูลเรียบร้อยแล้ว');
             return redirect()->back();
         } else {
             return redirect()->back()->with('error_msg', 'ไม่สามารถแก้ไขข้อมูลได้');
         }
-        
     }
 
 
     // เจ้าของข้อมูลจัดการได้เอง
     public function viewDetailProcurement()
-    {    
-        $data = P_EMP_ALL::where('emp_id',Session::get('emp_id'))->get();
+    {
+        $data = P_EMP_ALL::where('emp_id', Session::get('emp_id'))->get();
         // dd($data); 
         // $data_id = $data->first(); //ดึงค่าชุดแรก
         // $l_id_count = $data_id->l_id;  //ชี้ค่าที่ต้องการใช้งาน
@@ -153,10 +157,10 @@ class DssController extends Controller
         ]);
     }
 
-    
+
     public function editinfo(Request $request)
     {
-        if(!Session::get('emp_name')) {
+        if (!Session::get('emp_name')) {
             return redirect()->route('keycloak.login');
         }
 
@@ -172,8 +176,8 @@ class DssController extends Controller
         // Handle File Upload
         if ($request->hasFile('image')) {
             $oldPic = $request->input('oldImage');
-                if (File::exists(public_path('storage/images/profile/') . $oldPic)) {
-                    File::delete(public_path('storage/images/profile/') . $oldPic);
+            if (File::exists(public_path('storage/images/profile/') . $oldPic)) {
+                File::delete(public_path('storage/images/profile/') . $oldPic);
                 // Get just ext
                 $extension = $request->file('image')->getClientOriginalExtension();
                 // Filename to store
@@ -197,18 +201,11 @@ class DssController extends Controller
 
         $hr->save();
 
-        if($hr->save()) {
+        if ($hr->save()) {
             Session::flash('success_msg', 'แก้ไขข้อมูลเรียบร้อยแล้ว');
             return redirect()->back();
         } else {
             return redirect()->back()->with('error_msg', 'ไม่สามารถแก้ไขข้อมูลได้');
         }
-        
     }
-
-
-
-
-
-
 }

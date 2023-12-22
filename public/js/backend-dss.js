@@ -41,6 +41,8 @@ $(document).ready(function () {
                 url: "../data-admin",
                 data: function (d) {
                     d.emp_name = $('input[name=emp_name]').val();
+                    d.english_name = $('input[name=english_name]').val();
+                    d.emp_id = $('input[name=emp_id]').val();
                     }
             },
             columns: [
@@ -121,9 +123,9 @@ $(document).ready(function () {
                     targets: 2,
                     render: function (data, type, row) {
                         if (row.english_name == null){
-                            var data =  '<span style="color:blue">'+row.pfix_name + row.emp_name+'</span>';                                            
+                            var data =  '<span style="color:blue">'+row.pfix_name + row.emp_name+'</span><br><span style="color:red">Emp. ID : ' + row.emp_id + '</span>';                                            
                         } else {
-                            var data =  '<span style="color:blue">'+row.pfix_name + row.emp_name +'</span><br>'+ row.pfix_name_e + row.english_name;                    
+                            var data =  '<span style="color:blue">'+row.pfix_name + row.emp_name +'</span><br>'+ row.pfix_name_e + row.english_name + '<br><span style="color:red">Emp. ID : ' + row.emp_id + '</span>';                    
                         }
                         return data;
                     },

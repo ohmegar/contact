@@ -18,7 +18,7 @@ class KeycloakController extends Controller
 
         if ($emp == null) {
             // แจ้งเตือนไม่พบข้อมูลในระบบบุคลากร
-            session(['status' => 405, 'msg' => 'ท่านไม่มีสิทธิ์เข้าใช้งานระบบนี้']);
+            session(['status' => 405, 'msg' => 'ข้อมูลในระบบไม่ตรงกัน']);
 
             return redirect()->route('permission');
 

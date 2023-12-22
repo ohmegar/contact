@@ -20,7 +20,7 @@
                     <div class="col-md-12">
                         <form action="" id="search-form" name="search-form" method="GET">                        
                             <div class="input-group">
-                                <span class="input-group-text" style="background-image: linear-gradient(to right,#000000,#7c7c7c); color: #FFF">ค้นหาข้อมูลตามชื่อ-นามสกุล : </span>
+                                <span class="input-group-text" style="background-image: linear-gradient(to right,#f83600,#fe8c00); color: #FFF">ค้นหาข้อมูลตามชื่อ-นามสกุล : </span>
                                 <input type="text" name="emp_name" id="emp_name" class="form-control" autocomplete="off" placeholder="โปรดกรอก ชื่อ-นามสกุล ถ้าหากทราบ" >
                             </div>
                                 <br><center><span class="input-group-btn">

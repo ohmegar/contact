@@ -20,7 +20,7 @@
                     <div class="col-md-12">
                         <form action="" id="search-form" name="search-form" method="GET">                        
                             <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1" style="background-image: linear-gradient(to right,#000000,#7c7c7c); color: #FFF">ค้นหาข้อมูลตามหน่วยงาน : </span>
+                                <span class="input-group-text" id="basic-addon1" style="background-image: linear-gradient(to right,#005C97,#363795); color: #FFF">ค้นหาข้อมูลตามหน่วยงาน : </span>
                                 <select name="division" id="division" class="form-control">
                                         <option value="">- โปรดเลือกหน่วยงาน -</option>
                                     @foreach ($glborganization as $glborganizations)

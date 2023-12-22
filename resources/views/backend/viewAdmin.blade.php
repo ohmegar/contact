@@ -19,8 +19,12 @@
         <div class="col-md-12">
             <form action="" id="search-form" name="search-form" method="GET">                        
                 <div class="input-group">
-                    <span class="input-group-text" style="background-image: linear-gradient(to right,#000000,#7c7c7c); color: #FFF">ค้นหาข้อมูลตามชื่อ-นามสกุล : </span>
-                    <input type="text" name="emp_name" id="emp_name" class="form-control" autocomplete="off" placeholder="โปรดกรอก ชื่อ-นามสกุล ถ้าหากทราบ" >
+                    <span class="input-group-text" style="background-image: linear-gradient(to right,#f83600,#fe8c00); color: #FFF">ค้นหา ชื่อ-นามสกุล </span>
+                    <input type="text" name="emp_name" id="emp_name" class="form-control" autocomplete="off" placeholder="โปรดกรอกคำค้น..." >
+                    <span class="input-group-text" style="background-image: linear-gradient(to right,#8E2DE2,#4A00E0); color: #FFF">ค้นหา Name-Surname</span>
+                    <input type="text" name="english_name" id="english_name" class="form-control" autocomplete="off" placeholder="โปรดกรอกคำค้น..." >
+                    <span class="input-group-text" style="background-image: linear-gradient(to right,#005C97,#363795); color: #FFF">ค้นหา Emp. ID </span>
+                    <input type="text" name="emp_id" id="emp_id" class="form-control" autocomplete="off" placeholder="โปรดกรอกคำค้น..." >
                 </div>
                     <br><center><span class="input-group-btn">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> ค้นหา</button>
