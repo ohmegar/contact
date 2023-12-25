@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Session;
 
 class KeycloakController extends Controller
 {
@@ -18,7 +15,7 @@ class KeycloakController extends Controller
 
         if ($emp == null) {
             // แจ้งเตือนไม่พบข้อมูลในระบบบุคลากร
-            session(['status' => 405, 'msg' => 'ข้อมูลในระบบไม่ตรงกัน']);
+            session(['status' => 405, 'msg' => 'ชื่อภาษาอังกฤษใน Keycloak ไม่ตรงกับ Back Office หรือไม่พบข้อมูลใน Back Office']);
 
             return redirect()->route('permission');
 
