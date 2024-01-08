@@ -12,8 +12,8 @@ class KeycloakController extends Controller
         // dd(auth()->user()->id);
         //  เรียกใช้ external API ด้วย Guzzle
         // $response = Http::get('http://contact.dss.local/api/user/' . auth()->user()->name);
-        // $response = Http::get('http://contact.dss.local/api/id/' . auth()->user()->id);
-        $response = Http::get('http://localhost/contact/public/api/id/' . auth()->user()->id);
+        // $response = Http::get('http://localhost/contact/public/api/id/' . auth()->user()->id);
+        $response = Http::get('http://contact.dss.local/api/id/' . auth()->user()->id);
 
         $emp = json_decode($response, true);
 
