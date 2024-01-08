@@ -9,13 +9,17 @@ class KeycloakController extends Controller
 {
     public function keycloakSession()
     {
+        // dd(auth()->user()->id);
         //  เรียกใช้ external API ด้วย Guzzle
-        $response = Http::get('http://contact.dss.local/api/user/' . auth()->user()->name);
+        // $response = Http::get('http://contact.dss.local/api/user/' . auth()->user()->name);
+        // $response = Http::get('http://contact.dss.local/api/id/' . auth()->user()->id);
+        $response = Http::get('http://localhost/contact/public/api/id/' . auth()->user()->id);
+
         $emp = json_decode($response, true);
 
         if ($emp == null) {
             // แจ้งเตือนไม่พบข้อมูลในระบบบุคลากร
-            session(['status' => 405, 'msg' => 'ชื่อภาษาอังกฤษใน Keycloak ไม่ตรงกับ Back Office หรือไม่พบข้อมูลใน Back Office']);
+            session(['status' => 405, 'msg' => 'ไม่พบข้อมูล Emp. ID ใน AD']);
 
             return redirect()->route('permission');
 

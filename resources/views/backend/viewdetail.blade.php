@@ -51,11 +51,16 @@
 
                 <div class="row">
                     <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        {{ Form::label('emp_id','Emp. ID')}} 
+                        <input type="text" class="form-control" name="emp_id" id="emp_id" disabled value="{{$data->emp_id}}" /> 
+                    </div>
+
+                    <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3">
                         {{ Form::label('pfix_name','คำนำหน้า : (ภาษาไทย)')}} 
                         <input type="text" class="form-control" name="pfix_name" id="pfix_name" disabled value="{{$data->pfix_name}}" /> 
                     </div>
 
-                    <div class="form-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         {{ Form::label('emp_name','ชื่อ-นามสกุล : (ภาษาไทย)')}} 
                         <input type="text" class="form-control" name="emp_name" id="emp_name" disabled value="{{$data->emp_name}}" /> 
                     </div>
