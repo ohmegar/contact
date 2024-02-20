@@ -478,6 +478,8 @@ $(document).ready(function () {
 
     // ------------------------------------------------------------------
 
+
+    /* handle tables s0 ค้นหาตามหน่วยงาน*/
     var tbview_so = $("#tbview_so").DataTable({
         responsive: true,
         processing: true,
