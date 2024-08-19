@@ -40,8 +40,8 @@
       </div>
 </div>
     <br>
-    <center><button type="button" class="btn btn-outline-danger"><p style="font-size: 18px; color:rgb(38, 38, 38)"><i class="fa fa-address-card"></i>
-        <a href="{{ url('/announcement') }}" style="color:#000000;">ต้องการแก้ไขข้อมูลของตัวเอง</p></a>
+    <center><button type="button" class="btn btn-warning"><p style="font-size: 18px; color:rgb(0, 0, 0)"><i class="fa fa-pencil"></i>
+        <a href="{{ url('/announcement') }}" style="color:#000000;">ต้องการแก้ไขข้อมูล<br>ของตัวเอง</p></a>
     </button></center> 
 
 </div>  

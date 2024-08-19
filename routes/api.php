@@ -23,3 +23,7 @@ Route::get('/user/{engname}', [EmployeeController::class, 'user']);
 Route::get('/userall', [EmployeeController::class, 'userall']);
 
 Route::get('/id/{id}', [EmployeeController::class, 'id']);
+
+Route::get('/organization', [EmployeeController::class, 'organization']);
+
+Route::get('/user_org/{id}', [EmployeeController::class, 'user_org']);
