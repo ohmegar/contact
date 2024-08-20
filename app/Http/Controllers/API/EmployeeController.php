@@ -50,7 +50,7 @@ class EmployeeController extends Controller
     public function user_org($id)
     {
         $user_org = P_EMP_ALL::select('*')
-            ->where('div_id', 'like', $id)
+            ->where('division', 'like', $id)
             ->get();
 
         return response()->json($user_org);
