@@ -40,8 +40,8 @@
       </div>
 </div>
     <br>
-    <center><button type="button" class="btn btn-warning"><p style="font-size: 18px; color:rgb(0, 0, 0)"><i class="fa fa-pencil"></i>
-        <a href="{{ url('/announcement') }}" style="color:#000000;">ต้องการแก้ไขข้อมูล<br>ของตัวเอง</p></a>
+    <center><button type="button" class="btn btn-danger"><p style="font-size: 18px; color:#ffffff"><i class="fa fa-pencil"></i>
+        <a href="{{ url('/announcement') }}" style="color:#ffffff;">ต้องการแก้ไขข้อมูล<br>ของตัวเอง</p></a>
     </button></center> 
 
 </div>  
@@ -90,7 +90,7 @@
             <figure class="snip1219">
               <img src="{{ asset('style-index/images/stat.jpg') }}">
               <figcaption>
-                <h1>จ้างเหมาบริการ <br> {{ $p3 }} คน</h1>
+                <h2>พนักงานกรมวิทยาศาสตร์บริการ <br> {{ $p3 }} คน</h2>
               </figcaption>
             </figure>
           </div>

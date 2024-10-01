@@ -148,6 +148,13 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        {{ Form::label('line_token','LINE Token  : (เพื่อใช้ในระบบงาน วศ.)')}} 
+                        <input type="text" class="form-control" name="line_token" id="line_token"  placeholder="กรุณานำ Line Token มากรอก (ถ้าหากมี)" value="{{$data->line_token}}" /> 
+                    </div>
+                </div>
+
 
                 <input type="text" class="form-control" name="emp_id" id="emp_id" hidden value="{{$data->emp_id}}" /> 
                 <input type="text" class="form-control" name="oldImage" id="oldImage" hidden value="{{$data->image}}" /> 

@@ -1060,6 +1060,23 @@ figure.snip1219 {
      transform: translateY(-10px);
      opacity: 1;
    }
+   figure.snip1219 h2 {
+     position: absolute;
+     bottom: 0;
+     right: 0;
+     margin: 0;
+     font-size: 1.2rem;
+     color: #ffffff;
+     padding: 10px 50px;
+     text-transform: uppercase;
+     font-weight: 500;
+     z-index: 2;
+     -webkit-transition-delay: 0.15s;
+     transition-delay: 0.15s;
+     -webkit-transform: translateY(-10px);
+     transform: translateY(-10px);
+     opacity: 1;
+   }
    figure.snip1219 a {
      left: 0;
      right: 0;
@@ -1111,6 +1128,14 @@ figure.snip1219 {
    }
    figure.snip1219:hover h1,
    figure.snip1219.hover h1 {
+     -webkit-transform: translateY(0);
+     transform: translateY(0);
+     opacity: 1;
+     color: #000000;
+
+   }
+   figure.snip1219:hover h2,
+   figure.snip1219.hover h2 {
      -webkit-transform: translateY(0);
      transform: translateY(0);
      opacity: 1;

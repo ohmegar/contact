@@ -56,5 +56,16 @@ class EmployeeController extends Controller
         return response()->json($user_org);
     }
 
+    public function organizationAll()
+    {
+        // $max = Glb_Organization::max('org_code');
+        // $max_org_code = substr($max, 0, 2) . '_____000';
+
+        $glborganization = Glb_Organization::select()
+            ->orderBy('org_code')
+            ->get();
+
+            return response()->json($glborganization);
+    }
     
 }

@@ -30,7 +30,7 @@ class DssController extends Controller
             return redirect()->route('keycloak.login');
         }
 
-        $data = P_EMP_ALL::select('emp_id', 'pfix_name', 'emp_name', 'pfix_name_e', 'english_name', 'image', 'division', 'sub_division', 'position_view', 'emp_type_name', 'dss_phone', 'dss_fax', 'dss_mail', 'dss_location', 'show_order');
+        $data = P_EMP_ALL::select('emp_id', 'pfix_name', 'emp_name', 'pfix_name_e', 'english_name', 'image', 'division', 'sub_division', 'position_view', 'emp_type_name', 'dss_phone', 'dss_fax', 'dss_mail', 'dss_location', 'show_order', 'line_token', 'status_line');
         // dd($data);
         // dd($request->search);
 
@@ -171,7 +171,7 @@ class DssController extends Controller
         $hr->dss_fax = $request->input('dss_fax');
         $hr->dss_mail = $request->input('dss_mail');
         $hr->dss_location = $request->input('dss_location');
-
+        $hr->line_token = $request->input('line_token');
 
         // Handle File Upload
         if ($request->hasFile('image')) {
