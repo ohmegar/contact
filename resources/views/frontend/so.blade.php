@@ -4,7 +4,7 @@
 
 @include('frontend.head')
 
-@include('frontend.topuser') 
+@include('frontend.topuser')
 
 <div class="container">
     <div class="row">
@@ -13,53 +13,56 @@
         </div>
     </div>
 
-            <img class="position-absolute pointer-events-none" src="{{ asset('style-index/images/vector-1.png') }}" alt="vector-2"
-            style="z-index: -1;width: 30vw;top: 130;left: 0;">
-                
+    <img class="position-absolute pointer-events-none" src="{{ asset('style-index/images/vector-1.png') }}" alt="vector-2"
+        style="z-index: -1;width: 30vw;top: 130;left: 0;">
 
-                    <div class="col-md-12">
-                        <form action="" id="search-form" name="search-form" method="GET">                        
-                            <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1" style="background-image: linear-gradient(to right,#005C97,#363795); color: #FFF">ค้นหาข้อมูลตามหน่วยงาน : </span>
-                                <select name="division" id="division" class="form-control">
-                                        <option value="">- โปรดเลือกหน่วยงาน -</option>
-                                    @foreach ($glborganization as $glborganizations)
-                                        <option value="{{ $glborganizations->org_name }}">{{ $glborganizations->org_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        
-                                <br><center><span class="input-group-btn">
+
+    <div class="col-md-12">
+        <form action="" id="search-form" name="search-form" method="GET">
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon1"
+                    style="background-image: linear-gradient(to right,#005C97,#363795); color: #FFF">ค้นหาข้อมูลตามหน่วยงาน
+                    : </span>
+                <select name="division" id="division" class="form-control">
+                    <option value="">- โปรดเลือกหน่วยงาน -</option>
+                    @foreach ($glborganization as $glborganizations)
+                        <option value="{{ $glborganizations->org_name }}">{{ $glborganizations->org_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <br>
+            {{-- <br><center><span class="input-group-btn">
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> ค้นหา</button>
                                     <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> ล้างค่า</button>
-                                </span> </center>   
-                        </form>
-                    </div>
-                
-                    <div class="card mb-3">        
-                        <div class="card-body table-responsive">
-                            <table class="table table-bordered table-striped table-sm display" id="tbview_so">
-                                <thead>
-                                    <tr align="center" style="background-image: linear-gradient(to right, #3f033f,#3f033f); color: #FFF">
-                                        <th>กอง/สำนัก</th>
-                                        <th>กลุ่ม</th>
-                                        <th style="width: 5%">#</th>
-                                        <th style="width: 15%">ชื่อ-นามสกุล</th>
-                                        <th style="width: 15%">ภาพ</th>
-                                        <th style="width: 12%">ตำแหน่ง</th>
-                                        <th style="width: 10%">สถานะ</th>
-                                        <th style="width: 15%">Tel .</th>
-                                        <th style="width: 5%">Fax</th>
-                                        <th style="width: 8%">e-mail</th>
-                                        <th style="width: 15%">สถานที่ทำงาน</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>    
+                                </span> </center>    --}}
+        </form>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-striped table-sm display" id="tbview_so">
+                <thead>
+                    <tr align="center"
+                        style="background-image: linear-gradient(to right, #3f033f,#3f033f); color: #FFF">
+                        <th>กอง/สำนัก</th>
+                        <th>กลุ่ม</th>
+                        <th style="width: 5%">#</th>
+                        <th style="width: 15%">ชื่อ-นามสกุล</th>
+                        <th style="width: 15%">ภาพ</th>
+                        <th style="width: 12%">ตำแหน่ง</th>
+                        <th style="width: 10%">สถานะ</th>
+                        <th style="width: 15%">Tel .</th>
+                        <th style="width: 5%">Fax</th>
+                        <th style="width: 8%">e-mail</th>
+                        <th style="width: 15%">สถานที่ทำงาน</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 
@@ -68,8 +71,13 @@
 
 
 <script src="{{ asset('style-index/js/frontend.js') }}"></script>
+<script>
+    $(function() {
+        $('#division').on('change', function() {
+            $('#search-form').submit();
+        })
+    });
+</script>
 
 
 @include('frontend.footer')
-
-
