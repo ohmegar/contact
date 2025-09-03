@@ -91,7 +91,7 @@
               <img src="{{ asset('style-index/images/stat.jpg') }}">
               <figcaption>
                 {{-- <h2>พนักงานกรมวิทยาศาสตร์บริการ <br> {{ $p3 }} คน</h2> --}}
-                <h1>จ้างเหมาบริการ <br> {{ $p3 }} คน</h1>
+                <h1>จ้างเหมา <br> {{ $p3 }} คน</h1>
               </figcaption>
             </figure>
           </div>
