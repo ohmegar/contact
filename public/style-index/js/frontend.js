@@ -6,8 +6,9 @@ $(document).ready(function () {
         serverSide: true,
         // order: [2, 'ASC'], //คำสั่งให้เรียงจากมากไปน้อยของคอลัม 5 นับ 012345
         order: [
-            [0, "ASC"],
-            [1, "ASC"],
+            [0, "DESC"],
+            [1, "DESC"],
+            [2, "DESC"],
             [5, "ASC"],
         ], //คำสั่งให้เรียงจากมากไปน้อยของคอลัม 5 นับ 012345
         rowGroup: {
@@ -54,14 +55,17 @@ $(document).ready(function () {
                 d.emp_name = $("input[name=emp_name]").val();
             },
         },
-        columns: [
-            {
+        columns: [{
                 data: "division",
                 name: "division",
             },
             {
                 data: "sub_division",
                 name: "sub_division",
+            },
+            {
+                data: "ceo_flg",
+                name: "ceo_flg",
             },
             {
                 data: "emp_name",
@@ -99,7 +103,7 @@ $(document).ready(function () {
         columnDefs: [
             // ซ่อนข้อมูลคอลัม 1-2
             {
-                targets: [0, 1],
+                targets: [0, 1, 2],
                 visible: false,
             },
             {
@@ -125,33 +129,45 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 2,
+                targets: 3,
                 render: function (data, type, row) {
+
+                    if (row.ceo_position == 'อื่นๆ') {
+                        var dataCeo = "";
+                    } else {
+                        var dataCeo = '<br><span style="color:#750000"><b>' +
+                            row.ceo_position +
+                            "</b></span>";
+                    }
+
+
                     if (row.english_name == null) {
                         var data =
-                            '<span style="color:blue">' +
+                            '<b><span style="color:DarkBlue">' +
                             row.pfix_name +
                             row.emp_name +
-                            '</span><br><span style="color:red">Emp. ID : ' +
+                            '</b></span><br><span style="color:MediumVioletRed ">Emp. ID : ' +
                             row.emp_id +
                             "</span>";
                     } else {
                         var data =
-                            '<span style="color:blue">' +
+                            '<b><span style="color:DarkBlue">' +
                             row.pfix_name +
                             row.emp_name +
-                            "</span><br>" +
+                            "</b></span><br>" +
                             row.pfix_name_e +
                             row.english_name +
-                            '<br><span style="color:red">Emp. ID : ' +
+                            '<br><span style="color:MediumVioletRed ">Emp. ID : ' +
                             row.emp_id +
                             "</span>";
                     }
-                    return data;
+
+
+                    return data + dataCeo;
                 },
             },
             {
-                targets: 3,
+                targets: 4,
                 render: function (data, type, row) {
                     if (row.image == null) {
                         var data =
@@ -166,7 +182,7 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 4,
+                targets: 5,
                 render: function (data, type, row) {
                     if (row.position_view == "นักบริหาร") {
                         var data =
@@ -181,14 +197,14 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 5,
+                targets: 6,
                 render: function (data, type, row) {
                     var data = "<center>" + row.emp_type_name + "</center>";
                     return data;
                 },
             },
             {
-                targets: 6,
+                targets: 7,
                 render: function (data, type, row) {
                     if (row.dss_phone == null) {
                         var data = "<center> - </center>";
@@ -199,7 +215,7 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 7,
+                targets: 8,
                 render: function (data, type, row) {
                     if (row.dss_fax == null) {
                         var data = "<center> - </center>";
@@ -210,7 +226,7 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 8,
+                targets: 9,
                 render: function (data, type, row) {
                     if (row.dss_mail == null) {
                         var data = "<center> - </center>";
@@ -221,7 +237,7 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 9,
+                targets: 10,
                 render: function (data, type, row) {
                     if (row.dss_location == null) {
                         var data = "<center> - </center>";
@@ -246,7 +262,12 @@ $(document).ready(function () {
         responsive: true,
         processing: true,
         serverSide: true,
-        order: [[0, "asc"]], //คำสั่งให้เรียงจากมากไปน้อยของคอลัม 5 นับ 012345
+        order: [
+            [0, "DESC"],
+            [1, "DESC"],
+            [2, "DESC"],
+            [5, "ASC"],
+        ], //คำสั่งให้เรียงจากมากไปน้อยของคอลัม 5 นับ 012345
         rowGroup: {
             dataSrc: ["division", "sub_division"],
             emptyDataGroup: null, //ไม่แสดงข้อความถ้าไม่มีข้อมูล
@@ -291,14 +312,17 @@ $(document).ready(function () {
                 d.dss_phone = $("input[name=dss_phone]").val();
             },
         },
-        columns: [
-            {
+        columns: [{
                 data: "division",
                 name: "division",
             },
             {
                 data: "sub_division",
                 name: "sub_division",
+            },
+            {
+                data: "ceo_flg",
+                name: "ceo_flg",
             },
             {
                 data: "emp_name",
@@ -336,7 +360,7 @@ $(document).ready(function () {
         columnDefs: [
             // ซ่อนข้อมูลคอลัม 1-2
             {
-                targets: [0, 1],
+                targets: [0, 1, 2],
                 visible: false,
             },
             {
@@ -362,33 +386,45 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 2,
+                targets: 3,
                 render: function (data, type, row) {
+
+                    if (row.ceo_position == 'อื่นๆ') {
+                        var dataCeo = "";
+                    } else {
+                        var dataCeo = '<br><span style="color:#750000"><b>' +
+                            row.ceo_position +
+                            "</b></span>";
+                    }
+
+
                     if (row.english_name == null) {
                         var data =
-                            '<span style="color:blue">' +
+                            '<b><span style="color:DarkBlue">' +
                             row.pfix_name +
                             row.emp_name +
-                            '</span><br><span style="color:red">Emp. ID : ' +
+                            '</b></span><br><span style="color:MediumVioletRed ">Emp. ID : ' +
                             row.emp_id +
                             "</span>";
                     } else {
                         var data =
-                            '<span style="color:blue">' +
+                            '<b><span style="color:DarkBlue">' +
                             row.pfix_name +
                             row.emp_name +
-                            "</span><br>" +
+                            "</b></span><br>" +
                             row.pfix_name_e +
                             row.english_name +
-                            '<br><span style="color:red">Emp. ID : ' +
+                            '<br><span style="color:MediumVioletRed ">Emp. ID : ' +
                             row.emp_id +
                             "</span>";
                     }
-                    return data;
+
+
+                    return data + dataCeo;
                 },
             },
             {
-                targets: 3,
+                targets: 4,
                 render: function (data, type, row) {
                     if (row.image == null) {
                         var data =
@@ -403,7 +439,7 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 4,
+                targets: 5,
                 render: function (data, type, row) {
                     if (row.position_view == "นักบริหาร") {
                         var data =
@@ -418,14 +454,14 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 5,
+                targets: 6,
                 render: function (data, type, row) {
                     var data = "<center>" + row.emp_type_name + "</center>";
                     return data;
                 },
             },
             {
-                targets: 6,
+                targets: 7,
                 render: function (data, type, row) {
                     if (row.dss_phone == null) {
                         var data = "<center> - </center>";
@@ -436,7 +472,7 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 7,
+                targets: 8,
                 render: function (data, type, row) {
                     if (row.dss_fax == null) {
                         var data = "<center> - </center>";
@@ -447,7 +483,7 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 8,
+                targets: 9,
                 render: function (data, type, row) {
                     if (row.dss_mail == null) {
                         var data = "<center> - </center>";
@@ -458,7 +494,7 @@ $(document).ready(function () {
                 },
             },
             {
-                targets: 9,
+                targets: 10,
                 render: function (data, type, row) {
                     if (row.dss_location == null) {
                         var data = "<center> - </center>";
@@ -479,17 +515,17 @@ $(document).ready(function () {
     // ------------------------------------------------------------------
 
 
-    /* handle tables s0 ค้นหาตามหน่วยงาน*/
+    /* handle tables so ค้นหาตามหน่วยงาน*/
     var tbview_so = $("#tbview_so").DataTable({
         responsive: true,
         processing: true,
         serverSide: true,
         // order: [2, 'ASC'], //คำสั่งให้เรียงจากมากไปน้อยของคอลัม 5 นับ 012345
         order: [
-            [0, "ASC"],
-            [1, "ASC"],
-            [2, "ASC"],
-            [6, "ASC"],
+            [0, "DESC"],
+            [1, "DESC"],
+            [2, "DESC"],
+            [5, "ASC"],
         ], //คำสั่งให้เรียงจากมากไปน้อยของคอลัม 5 นับ 012345
         rowGroup: {
             dataSrc: ["division", "sub_division"],
@@ -555,8 +591,7 @@ $(document).ready(function () {
                 d.division = $("#division").val();
             },
         },
-        columns: [
-            {
+        columns: [{
                 data: "division",
                 name: "division",
             },
@@ -565,8 +600,8 @@ $(document).ready(function () {
                 name: "sub_division",
             },
             {
-                data: "show_order",
-                name: "show_order",
+                data: "ceo_flg",
+                name: "ceo_flg",
             },
             {
                 data: "emp_name",
@@ -602,9 +637,9 @@ $(document).ready(function () {
             },
         ],
         columnDefs: [
-            // ซ่อนข้อมูลคอลัม 1-2
+            // ซ่อนข้อมูลคอลัม 1-3
             {
-                targets: [0, 1],
+                targets: [0, 1, 2],
                 visible: false,
             },
             {
@@ -629,41 +664,55 @@ $(document).ready(function () {
                     return data;
                 },
             },
-            {
-                targets: 2,
-                render: function (data, type, row) {
-                    if (row.show_order == null) {
-                        var data = "";
-                    } else {
-                        var data = "<center>" + row.show_order + "</center>";
-                    }
-                    return data;
-                },
-            },
+            // {
+            //     targets: 2,
+            //     render: function (data, type, row) {
+            //         if (row.show_order == null) {
+            //             var data = "";
+            //         } else {
+            //             var data = '<span style="color:Indigo"><b>' +
+            //                 row.show_order +
+            //                 "</b></span>";
+            //         }
+            //         return data;
+            //     },
+            // },
             {
                 targets: 3,
                 render: function (data, type, row) {
+
+                    if (row.ceo_position == 'อื่นๆ') {
+                        var dataCeo = "";
+                    } else {
+                        var dataCeo = '<br><span style="color:#750000"><b>' +
+                            row.ceo_position +
+                            "</b></span>";
+                    }
+
+
                     if (row.english_name == null) {
                         var data =
-                            '<span style="color:blue">' +
+                            '<b><span style="color:DarkBlue">' +
                             row.pfix_name +
                             row.emp_name +
-                            '</span><br><span style="color:red">Emp. ID : ' +
+                            '</b></span><br><span style="color:MediumVioletRed ">Emp. ID : ' +
                             row.emp_id +
                             "</span>";
                     } else {
                         var data =
-                            '<span style="color:blue">' +
+                            '<b><span style="color:DarkBlue">' +
                             row.pfix_name +
                             row.emp_name +
-                            "</span><br>" +
+                            "</b></span><br>" +
                             row.pfix_name_e +
                             row.english_name +
-                            '<br><span style="color:red">Emp. ID : ' +
+                            '<br><span style="color:MediumVioletRed ">Emp. ID : ' +
                             row.emp_id +
                             "</span>";
                     }
-                    return data;
+
+
+                    return data + dataCeo;
                 },
             },
             {
@@ -693,6 +742,7 @@ $(document).ready(function () {
                     } else {
                         var data = "<center>" + row.position_view + "</center>";
                     }
+
                     return data;
                 },
             },

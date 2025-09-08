@@ -42,6 +42,7 @@
                         style="background-image: linear-gradient(to right, #0b3e02,#0b3e02); color: #FFF">
                         <th>กอง/สำนัก</th>
                         <th>กลุ่ม</th>
+                        <th style="width: 5%">#</th>
                         <th style="width: 20%">ชื่อ-นามสกุล</th>
                         <th style="width: 15%">ภาพ</th>
                         <th style="width: 12%">ตำแหน่ง</th>

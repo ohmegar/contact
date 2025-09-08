@@ -44,10 +44,11 @@
                         style="background-image: linear-gradient(to right, #d18f17,#d18f17); color: #000000">
                         <th>กอง/สำนัก</th>
                         <th>กลุ่ม</th>
+                        <th style="width: 5%">#</th>
                         <th style="width: 20%">ชื่อ-นามสกุล</th>
                         <th style="width: 15%">ภาพ</th>
                         <th style="width: 12%">ตำแหน่ง</th>
-                        <th style="width: 10%">สถานะ</th>
+                        <th style="width: 10%">ประเภท</th>
                         <th style="width: 15%">Tel .</th>
                         <th style="width: 5%">Fax</th>
                         <th style="width: 8%">e-mail</th>
