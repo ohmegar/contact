@@ -9,7 +9,8 @@ $(document).ready(function () {
             [0, "DESC"],
             [1, "DESC"],
             [2, "DESC"],
-            [5, "ASC"],
+            // [5, "ASC"],
+            [6, "DESC"],
         ], //คำสั่งให้เรียงจากมากไปน้อยของคอลัม 5 นับ 012345
         rowGroup: {
             dataSrc: ["division", "sub_division"],
@@ -266,7 +267,8 @@ $(document).ready(function () {
             [0, "DESC"],
             [1, "DESC"],
             [2, "DESC"],
-            [5, "ASC"],
+            // [5, "ASC"],
+            [6, "DESC"],
         ], //คำสั่งให้เรียงจากมากไปน้อยของคอลัม 5 นับ 012345
         rowGroup: {
             dataSrc: ["division", "sub_division"],
@@ -525,7 +527,8 @@ $(document).ready(function () {
             [0, "DESC"],
             [1, "DESC"],
             [2, "DESC"],
-            [5, "ASC"],
+            // [5, "ASC"],
+            [6, "DESC"],
         ], //คำสั่งให้เรียงจากมากไปน้อยของคอลัม 5 นับ 012345
         rowGroup: {
             dataSrc: ["division", "sub_division"],
