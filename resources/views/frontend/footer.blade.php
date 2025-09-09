@@ -10,14 +10,14 @@ style="y-index: -1;width: 10vw;bottom: 500;right: 0;">
                   <div class="col-md-6">
                      <div class="row">
                         <div class="col-md-12 offset-md-1 padding_bottom1">
-                           <h3>ข้อมูลการติดต่อ</h3>
+                           <h3>ติดต่อ</h3>
                            <ul class="cont">
-                              <li>กลุ่มงานเทคโนโลยีสารสนเทศ (ทส.) <br> กรมวิทยาศาสตร์บริการ (วศ.)</li>
-                              <li><i class="fa fa-phone"></i> โทรศัพท์ 0-2201-7513</li>
+                              <li>กรมวิทยาศาสตร์บริการ (วศ.)</li>
+                              <li><i class="fa fa-phone"></i> โทรศัพท์ 0 2201 7000</li>
                               {{-- <li><a href="https://lookerstudio.google.com/u/0/reporting/34beb533-005a-4190-bcc5-2da0fde3e3f6/page/6zXD" target="_new"><i class="fa fa-bar-chart"></i> สถิติการใช้งาน</a></li> --}}
-                              <li><i class="fa fa-envelope" aria-hidden="true"></i> อีเมลติดต่อสอบถาม  helpdesk@dss.go.th</li>
+                              <li><i class="fa fa-envelope" aria-hidden="true"></i> อีเมลติดต่อสอบถาม  pr@dss.go.th</li>
                               <li><a href="https://www.dss.go.th" target="_new"><i class="fa fa-globe"></i> เว็บไซต์กรมวิทยาศาสตร์บริการ</a></li>
-                              <li><a href="{{ url('/login') }}"><i class="fa fa-user"></i> เข้าสู่ระบบ (สำหรับเจ้าหน้าที่ Admin เท่านั้น)  </a></li>
+                              <li><a href="{{ url('/login') }}"><i class="fa fa-user"></i> Login for Admin</a></li>
                            </ul>
                         </div>
                      </div>
@@ -27,9 +27,9 @@ style="y-index: -1;width: 10vw;bottom: 500;right: 0;">
                         <div class="col-md-12 offset-md-1 padding_bottom1">
                            <h3>เกี่ยวกับเรา</h3>
                            <ul class="cont">
-                              <li>กลุ่มเทคโนโลยีสารสนเทศ ได้จัดทำระบบนามสงเคราะห์ เพื่อใช้สำหรับให้บริการบุคลากร วศ.
+                              <li>วศ. ได้จัดทำระบบนามสงเคราะห์ เพื่อใช้สำหรับให้บริการบุคลากร วศ.
                                  ได้ดำเนินการค้นหาข้อมูลเกี่ยวกับบุคลากรภายใน วศ. ได้อย่างสะดวก
-                                 รวดเร็ว และมีประสิทธิภาพ เพื่อตอบโจทย์ยุคดิจิทัล <br>Version 2.1 (2025)</li>
+                                 รวดเร็ว และมีประสิทธิภาพ เพื่อตอบโจทย์ยุคดิจิทัล <br>Version 2.2 (2025)</li>
                            </ul>
                         </div>
                      </div>

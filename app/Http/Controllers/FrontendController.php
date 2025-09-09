@@ -13,17 +13,17 @@ class FrontendController extends Controller
 
     public function index()
     {
-            //นับจำนวนบุคลากรแต่ละประเภท 1 ข้าราช 2 ลูกจ้างประจำ 3 จ้างเหมา A พนักงานราชการ
-            $p1acount = P_EMP_ALL::where('EMP_TYPE', '1')->get();
-            $p1 = $p1acount->count();
-            $p2acount = P_EMP_ALL::where('EMP_TYPE', '2')->get();
-            $p2 = $p2acount->count();
-            $p3acount = P_EMP_ALL::where('EMP_TYPE', '3')->get();
-            $p3 = $p3acount->count();
-            $p4acount = P_EMP_ALL::where('EMP_TYPE', 'A')->get();
-            $p4 = $p4acount->count();
+        //นับจำนวนบุคลากรแต่ละประเภท 1 ข้าราช 2 ลูกจ้างประจำ 3 จ้างเหมา A พนักงานราชการ
+        $p1acount = P_EMP_ALL::where('EMP_TYPE', '1')->get();
+        $p1 = $p1acount->count();
+        $p2acount = P_EMP_ALL::where('EMP_TYPE', '2')->get();
+        $p2 = $p2acount->count();
+        $p3acount = P_EMP_ALL::where('EMP_TYPE', '3')->get();
+        $p3 = $p3acount->count();
+        $p4acount = P_EMP_ALL::where('EMP_TYPE', 'A')->get();
+        $p4 = $p4acount->count();
 
-            $pall = $p1+$p2+$p3+$p4;
+        $pall = $p1 + $p2 + $p3 + $p4;
 
         return view('frontend.index', [
             'p1' => $p1,
@@ -37,19 +37,25 @@ class FrontendController extends Controller
 
     public function getDataSn(Request $request)
     {
-        $data = P_EMP_ALL::select('emp_id', 'pfix_name', 'emp_name', 'pfix_name_e', 'english_name', 'image', 'division', 'sub_division', 'position_view', 'emp_type_name', 'dss_phone', 'dss_fax', 'dss_mail', 'dss_location', 'show_order', 'ceo_position', 'ceo_flg');
+        $data = P_EMP_ALL::select('emp_id', 'pfix_name', 'emp_name', 'pfix_name_e', 'english_name', 'image', 'division', 'sub_division', 'position_view', 'emp_type_name', 'dss_phone', 'dss_fax', 'dss_mail', 'dss_location', 'show_order', 'ceo_flg');
         // ->orderBy('show_order');
         // dd($data);
         // dd($request->searchName);
 
-            return Datatables::eloquent($data)
+        return Datatables::eloquent($data)
+
             ->filter(function ($query) use ($request) {
-            if ($request->has('emp_name')) {
-                $query->where('emp_name', 'like', "%{$request->emp_name}%");
-            }
+                if ($request->has('emp_name')) {
+                    $query->where('emp_name', 'like', "%{$request->emp_name}%");
+                }
             })
+
+            ->addColumn('ceo_position', function ($data) {
+                return $data->ceoFlg->rv_meaning;
+            })
+
             ->make(true);
-        }
+    }
 
 
     public function sn()
@@ -70,19 +76,25 @@ class FrontendController extends Controller
 
     public function getDataSt(Request $request)
     {
-        $data = P_EMP_ALL::select('emp_id', 'pfix_name', 'emp_name', 'pfix_name_e', 'english_name', 'image', 'division', 'sub_division', 'position_view', 'emp_type_name', 'dss_phone', 'dss_fax', 'dss_mail', 'dss_location', 'show_order', 'ceo_position', 'ceo_flg');
+        $data = P_EMP_ALL::select('emp_id', 'pfix_name', 'emp_name', 'pfix_name_e', 'english_name', 'image', 'division', 'sub_division', 'position_view', 'emp_type_name', 'dss_phone', 'dss_fax', 'dss_mail', 'dss_location', 'show_order', 'ceo_flg');
         // ->orderBy('show_order');
         // dd($data);
         // dd($request->searchName);
 
-            return Datatables::eloquent($data)
+        return Datatables::eloquent($data)
+        
             ->filter(function ($query) use ($request) {
-            if ($request->has('dss_phone')) {
-                $query->where('dss_phone', 'like', "%{$request->dss_phone}%");
-            }
+                if ($request->has('dss_phone')) {
+                    $query->where('dss_phone', 'like', "%{$request->dss_phone}%");
+                }
             })
+
+            ->addColumn('ceo_position', function ($data) {
+                return $data->ceoFlg->rv_meaning;
+            })
+
             ->make(true);
-        }
+    }
 
 
     public function st()
@@ -94,17 +106,23 @@ class FrontendController extends Controller
 
     public function getDataSo(Request $request)
     {
-        $data = P_EMP_ALL::select('emp_id', 'pfix_name', 'emp_name', 'pfix_name_e', 'english_name', 'image', 'division', 'sub_division', 'position_view', 'emp_type_name', 'dss_phone', 'dss_fax', 'dss_mail', 'dss_location', 'show_order', 'ceo_position', 'ceo_flg');
+        $data = P_EMP_ALL::select('emp_id', 'pfix_name', 'emp_name', 'pfix_name_e', 'english_name', 'image', 'division', 'sub_division', 'position_view', 'emp_type_name', 'dss_phone', 'dss_fax', 'dss_mail', 'dss_location', 'show_order', 'ceo_flg');
         // ->orderBy('ceo_position', 'asc');
         // dd($data);
         // ddd($request->division);
 
         return Datatables::eloquent($data)
+
             ->filter(function ($query) use ($request) {
-            if ($request->has('division')) {
-                $query->where('division', 'like', "$request->division");
-            }
+                if ($request->has('division')) {
+                    $query->where('division', 'like', "$request->division");
+                }
             })
+
+            ->addColumn('ceo_position', function ($data) {
+                return $data->ceoFlg->rv_meaning;
+            })
+
             ->make(true);
     }
 
@@ -119,12 +137,8 @@ class FrontendController extends Controller
             ->orderBy('org_code')
             ->get();
 
-            return view('frontend.so', [
-                'glborganization' => $glborganization,
-            ]);
+        return view('frontend.so', [
+            'glborganization' => $glborganization,
+        ]);
     }
-
-
-
-
 }
