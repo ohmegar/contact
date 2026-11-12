@@ -29,3 +29,5 @@ Route::get('/organization', [EmployeeController::class, 'organization']);
 Route::get('/user_org/{id}', [EmployeeController::class, 'user_org']);
 
 Route::get('/organizationAll', [EmployeeController::class, 'organizationAll']);
+
+Route::get('/organizationNowAll', [EmployeeController::class, 'organizationNowAll']);

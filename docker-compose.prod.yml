@@ -1,0 +1,55 @@
+services:
+  # ----------------------------------------------------
+  # 1. PHP-FPM Application Service (Production)
+  # ----------------------------------------------------
+  app:
+    build:
+      context: .
+      dockerfile: .docker/php/Dockerfile.prod
+    image: contact-app:${TAG_NAME:-latest}
+    container_name: contact-app-prod
+    restart: always
+    working_dir: /var/www/contact
+    environment:
+      APP_ENV: production
+      APP_DEBUG: "false"
+    volumes:
+      - ./storage/logs:/var/www/contact/storage/logs
+    networks:
+      - apps_network
+
+  # ----------------------------------------------------
+  # 2. Nginx Web Server Service (Traefik Integrated)
+  # ----------------------------------------------------
+  nginx:
+    image: nginx:alpine
+    container_name: contact-nginx-prod
+    restart: always
+    volumes:
+      - .:/var/www/contact:ro
+      - ./.docker/nginx/prod.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - app
+    networks:
+      - apps_network
+
+  # ----------------------------------------------------
+  # 3. Queue Worker Service (Production)
+  # ----------------------------------------------------
+  # worker:
+  #   build:
+  #     context: .
+  #     dockerfile: .docker/php/Dockerfile.prod
+  #   image: contact-app:${TAG_NAME:-latest}
+  #   container_name: contact-worker-prod
+  #   restart: always
+  #   working_dir: /var/www/contact
+  #   command: php artisan queue:work --sleep=3 --tries=3 --timeout=90
+  #   depends_on:
+  #     - app
+  #   networks:
+  #     - apps_network
+
+networks:
+  apps_network:
+    external: true

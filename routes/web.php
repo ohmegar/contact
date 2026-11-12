@@ -34,7 +34,7 @@ Route::get('/703fe-58b6-898941b-b939de7-66220-bec7', function () {
 })->name('ie');
 
 
-// Check Browser 
+// Check Browser
 Route::middleware(['agent'])->group(function () {
 
     Route::get('/', [FrontendController::class, 'index']);
@@ -57,7 +57,8 @@ Route::middleware(['agent'])->group(function () {
     });
 
 
-    // Check login by Keycloak 
+
+    // Check login by Keycloak
     Route::group(['middleware' => 'keycloak-web'], function () {
         Route::get('/keycloak/session', [KeycloakController::class, 'keycloakSession']);
 

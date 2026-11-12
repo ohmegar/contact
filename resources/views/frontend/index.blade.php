@@ -1,5 +1,5 @@
 @section('title')
-   | หน้าหลัก
+    | หน้าหลัก
 @endsection
 
 @include('frontend.head')

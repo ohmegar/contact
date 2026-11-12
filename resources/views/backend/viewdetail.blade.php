@@ -1,194 +1,167 @@
 @extends('layouts.adminlte')
-{{ header("Content-type: image/png"); }}
 
-@section('title')
-    | edit
-@endsection
+@section('title', '| แก้ไขข้อมูลส่วนตัว (Admin)')
 
 @section('content')
 
-<div class="card card-dark">
-    <div class="card-header">
-        <h3 class="card-title"><i class="fas fa fa-address-card"></i> แก้ไขข้อมูลส่วนตัว</h3>
-        <div class="card-tools">
-    </div>
-    <!-- /.card-tools -->
-    </div>
-    <!-- /.card-header -->
-    
-    <div class="card-body">
-        <form action="{{ route('editAdmin') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        
-        @foreach ($datas as $data)
-        
-        <div class="row">
-            <div class="col col-sm-12 col-md-12">  
-
-                <div class="row">
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <center>
-                            @if ($data->image != null)
-                                <img src="http://hr-expertise.dss.local/storage/images/profile/{{$data->image}}" class="img-dss">                                            
-                            @else
-                                <img src="../../style-index/images/nophoto.png" class="img-dss">
-                            @endif
-                        </center>
-                    </div>
-                </div>
-
-                <div class="callout callout-danger info-box bg-dark">
-                    <dl>
-                        <div class="lable">
-                            <h6>
-                                <dt>
-                                    ส่วนที่ 1 บค.สล. (เป็นผู้รับผิดชอบข้อมูล) <br>ท่านไม่สามารถแก้ไขได้ด้วยตนเอง โปรดติดต่อผู้รับผิดชอบข้อมูล
-                                </dt>
-                            </h6>
-                        </div>
-                    </dl>
-                </div>
-
-                <div class="row">
-                    <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                        {{ Form::label('emp_id','Emp. ID')}} 
-                        <input type="text" class="form-control" name="emp_id" id="emp_id" disabled value="{{$data->emp_id}}" /> 
-                    </div>
-
-                    <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                        {{ Form::label('pfix_name','คำนำหน้า : (ภาษาไทย)')}} 
-                        <input type="text" class="form-control" name="pfix_name" id="pfix_name" disabled value="{{$data->pfix_name}}" /> 
-                    </div>
-
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        {{ Form::label('emp_name','ชื่อ-นามสกุล : (ภาษาไทย)')}} 
-                        <input type="text" class="form-control" name="emp_name" id="emp_name" disabled value="{{$data->emp_name}}" /> 
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                        {{ Form::label('pfix_name','คำนำหน้า : (ภาษาอังกฤษ)')}} 
-                        <input type="text" class="form-control" name="pfix_name_e" id="pfix_name_e" disabled value="{{$data->pfix_name_e}}" /> 
-                    </div>
-
-                    <div class="form-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                        {{ Form::label('english_name','ชื่อ-นามสกุล : (ภาษาอังกฤษ)')}} 
-                        <input type="text" class="form-control" name="english_name" id="english_name" disabled value="{{$data->english_name}}" /> 
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        {{ Form::label('position_view','ตำแหน่ง : ')}} 
-                        <input type="text" class="form-control" name="position_view" id="position_view" disabled value="{{$data->position_view}}" /> 
-                    </div>
-
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        {{ Form::label('emp_type_name','สถานะ : ')}} 
-                        <input type="text" class="form-control" name="emp_type_name" id="emp_type_name" disabled value="{{$data->emp_type_name}}" /> 
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        {{ Form::label('division','กอง/สำนัก : ')}} 
-                        <input type="text" class="form-control" name="division" id="division" disabled value="{{$data->division}}" /> 
-                    </div>
-
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        {{ Form::label('sub_division','กลุ่ม : ')}} 
-                        <input type="text" class="form-control" name="sub_division" id="sub_division" disabled value="{{$data->sub_division}}" /> 
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="callout callout-success info-box bg-dark">
-                    <dl>
-                        <div class="lable">
-                            <h6>
-                                <dt>
-                                    ส่วนที่ 2 <br>ท่านสามารถแก้ไขได้ด้วยตนเอง
-                                </dt>
-                            </h6>
-                        </div>
-                    </dl>
-                </div>
-
-                <div class="row">
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        {{ Form::label('dss_phone','เบอร์โทร : (ตัวอย่าง 0 2201 1234, 1235)')}} 
-                        <input type="text" class="form-control" name="dss_phone" id="dss_phone" placeholder="ตัวอย่าง 0 2201 1234" value="{{$data->dss_phone}}" /> 
-                    </div>
-
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        {{ Form::label('dss_fax','Fax. : (ตัวอย่าง 0 2201 1234)')}} 
-                        <input type="text" class="form-control" name="dss_fax" id="dss_fax" placeholder="ตัวอย่าง 0 2201 1234" value="{{$data->dss_fax}}" /> 
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        {{ Form::label('dss_mail','อีเมลกรม : (ตัวอย่าง abc@dss.go.th)')}} 
-                        <input type="email" class="form-control" name="dss_mail" id="dss_mail" placeholder="ตัวอย่าง abc@dss.go.th" value="{{$data->dss_mail}}" /> 
-                    </div>
-
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        {{ Form::label('image','อัพเดตรูปภาพประจำตัว :')}} <br>
-                        <input type="file" class="form-control" name="image" id="image" accept="image/png, image/gif, image/jpeg, image/jpg" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        {{ Form::label('dss_location','สถานที่ปฏิบัติงานใน วศ.  : (ตัวอย่าง ห้อง ชั้น อาคาร)')}} 
-                        {{-- {{ Form::textarea('dss_location', null, ['class' => 'form-control','id'=>'dss_location', 'rows'=> 1,'hidden']) }} --}}
-                        <input type="text" class="form-control" name="dss_location" id="dss_location"  placeholder="ตัวอย่าง ห้อง ชั้น อาคาร" value="{{$data->dss_location}}" /> 
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        {{ Form::label('show_order','ลำดับที่ต้องการแสดงข้อมูล  :')}}  <span style="color:rgb(255, 0, 0)">ส่วนนี้เฉพาะ IT เท่านั้นที่เห็น </span>
-                        {{-- {{ Form::textarea('dss_location', null, ['class' => 'form-control','id'=>'dss_location', 'rows'=> 1,'hidden']) }} --}}
-                        <input type="number" class="form-control" name="show_order" id="show_order"  placeholder="ลำดับที่ต้องการแสดงข้อมูล" value="{{$data->show_order}}" pattern="[0-9]*"/> 
-                    </div>
-                </div>
-
-
-                <input type="text" class="form-control" name="emp_id" id="emp_id" hidden value="{{$data->emp_id}}" /> 
-                <input type="text" class="form-control" name="oldImage" id="oldImage" hidden value="{{$data->image}}" /> 
-            
-            </div>
+    <div class="card card-dark">
+        <div class="card-header">
+            <h3 class="card-title"><i class="fas fa-address-card mr-1"></i> จัดการข้อมูลบุคคลากร วศ.</h3>
+            <div class="card-tools"></div>
         </div>
+        <!-- /.card-header -->
 
-        @endforeach
+        <form action="{{ route('editAdmin') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+
+            <div class="card-body">
+                @foreach ($datas as $data)
+                    <div class="row">
+                        <div class="col-12">
+
+
+                            {{-- ส่วนที่ 1: บค.สล. --}}
+                            <div class="callout callout-danger bg-dark mb-4">
+                                <h5><i class="fas fa-lock mr-1"></i> ส่วนที่ 1 บค.สล. (เป็นผู้รับผิดชอบข้อมูล)</h5>
+                                <p class="mb-0">ท่านไม่สามารถแก้ไขได้ด้วยตนเอง โปรดติดต่อผู้รับผิดชอบข้อมูล</p>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-3 col-sm-6">
+                                    <label for="emp_id_view">Emp. ID</label>
+                                    <input type="text" class="form-control" id="emp_id_view" value="{{ $data->emp_id }}"
+                                        disabled>
+                                </div>
+
+                                <div class="form-group col-md-3 col-sm-6">
+                                    <label for="pfix_name">คำนำหน้า : (ภาษาไทย)</label>
+                                    <input type="text" class="form-control" id="pfix_name" value="{{ $data->pfix_name }}"
+                                        disabled>
+                                </div>
+
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="emp_name">ชื่อ-นามสกุล : (ภาษาไทย)</label>
+                                    <input type="text" class="form-control" id="emp_name" value="{{ $data->emp_name }}"
+                                        disabled>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-3 col-sm-6">
+                                    <label for="pfix_name_e">คำนำหน้า : (ภาษาอังกฤษ)</label>
+                                    <input type="text" class="form-control" id="pfix_name_e"
+                                        value="{{ $data->pfix_name_e }}" disabled>
+                                </div>
+
+                                <div class="form-group col-md-9 col-sm-6">
+                                    <label for="english_name">ชื่อ-นามสกุล : (ภาษาอังกฤษ)</label>
+                                    <input type="text" class="form-control" id="english_name"
+                                        value="{{ $data->english_name }}" disabled>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="position_view">ตำแหน่ง :</label>
+                                    <input type="text" class="form-control" id="position_view"
+                                        value="{{ $data->position_view }}" disabled>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="emp_type_name">สถานะ :</label>
+                                    <input type="text" class="form-control" id="emp_type_name"
+                                        value="{{ $data->emp_type_name }}" disabled>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="division">กอง/สำนัก :</label>
+                                    <input type="text" class="form-control" id="division" value="{{ $data->division }}"
+                                        disabled>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="sub_division">กลุ่ม :</label>
+                                    <input type="text" class="form-control" id="sub_division"
+                                        value="{{ $data->sub_division }}" disabled>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            {{-- ส่วนที่ 2: จัดการข้อมูล --}}
+                            <div class="callout callout-success bg-dark mb-4">
+                                <h5><i class="fas fa-user-edit mr-1"></i> ส่วนที่ 2</h5>
+                                <p class="mb-0">ท่านสามารถแก้ไขได้ด้วยตนเอง</p>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="dss_phone">เบอร์โทร : (ตัวอย่าง 0 2201 1234, 1235)</label>
+                                    <input type="text" class="form-control" name="dss_phone" id="dss_phone"
+                                        placeholder="ตัวอย่าง 0 2201 1234"
+                                        value="{{ old('dss_phone', $data->dss_phone) }}">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="dss_fax">Fax. : (ตัวอย่าง 0 2201 1234)</label>
+                                    <input type="text" class="form-control" name="dss_fax" id="dss_fax"
+                                        placeholder="ตัวอย่าง 0 2201 1234" value="{{ old('dss_fax', $data->dss_fax) }}">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="dss_mail">อีเมลกรม : (ตัวอย่าง abc@dss.go.th)</label>
+                                    <input type="email" class="form-control" name="dss_mail" id="dss_mail"
+                                        placeholder="ตัวอย่าง abc@dss.go.th"
+                                        value="{{ old('dss_mail', $data->dss_mail) }}">
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="form-group col-12">
+                                    <label for="dss_location">สถานที่ปฏิบัติงานใน วศ. : (ตัวอย่าง ห้อง ชั้น อาคาร)</label>
+                                    <input type="text" class="form-control" name="dss_location" id="dss_location"
+                                        placeholder="ตัวอย่าง ห้อง ชั้น อาคาร"
+                                        value="{{ old('dss_location', $data->dss_location) }}">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-12">
+                                    <label for="show_order">ลำดับที่ต้องการแสดงข้อมูล :</label>
+                                    <span class="badge badge-danger ml-1">ส่วนนี้เฉพาะ IT เท่านั้นที่เห็น</span>
+                                    <input type="number" class="form-control mt-1" name="show_order" id="show_order"
+                                        placeholder="ลำดับที่ต้องการแสดงข้อมูล"
+                                        value="{{ old('show_order', $data->show_order) }}" min="0">
+                                </div>
+                            </div>
+
+                            {{-- Hidden inputs สำหรับส่งค่า Controller --}}
+                            <input type="hidden" name="emp_id" value="{{ $data->emp_id }}">
+                            <input type="hidden" name="oldImage" value="{{ $data->image }}">
+
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer text-right">
+                <a href="{{ url('/backend/viewAdmin') }}" class="btn btn-danger btn-lg mr-2">
+                    <i class="fas fa-home"></i> กลับหน้าหลัก
+                </a>
+                <button type="submit" class="btn btn-success btn-lg">
+                    <i class="fas fa-save"></i> ยืนยันการแก้ไข
+                </button>
+            </div>
+        </form>
     </div>
-    <!-- /.card-body -->
-    
-    <div class="modal-footer">
-        <button type="button" class="btn btn-danger btn-lg" onclick="window.location.href='{{ url('/backend/viewAdmin')}}'"><i class="fas fa-home"></i> กลับหน้าหลัก</button>
-        <button type="submit" class="btn btn-success btn-lg"><i class="fas fa-save"></i> ยืนยันการแก้ไข</button>
-    </div>
-</form>
+    <!-- /.card -->
 
-</div>
-<!-- /.card -->
-
-
-
-{{-- @section('modal')
-    @include('backend.modals.modal-copyLink')
-@endsection --}}
-
+@endsection
 
 @section('scripts')
     <script src="{{ asset('js/backend-dss.js') }}"></script>
 @endsection
-
-
-@endsection
-
-
-

@@ -42,7 +42,7 @@ class FrontendController extends Controller
         // dd($data);
         // dd($request->searchName);
 
-        return Datatables::eloquent($data)
+        return datatables::eloquent($data)
 
             ->filter(function ($query) use ($request) {
                 if ($request->has('emp_name')) {
@@ -81,8 +81,8 @@ class FrontendController extends Controller
         // dd($data);
         // dd($request->searchName);
 
-        return Datatables::eloquent($data)
-        
+        return datatables::eloquent($data)
+
             ->filter(function ($query) use ($request) {
                 if ($request->has('dss_phone')) {
                     $query->where('dss_phone', 'like', "%{$request->dss_phone}%");
@@ -111,7 +111,7 @@ class FrontendController extends Controller
         // dd($data);
         // ddd($request->division);
 
-        return Datatables::eloquent($data)
+        return datatables::eloquent($data)
 
             ->filter(function ($query) use ($request) {
                 if ($request->has('division')) {

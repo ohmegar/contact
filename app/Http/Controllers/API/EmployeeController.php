@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\P_EMP_ALL;
 use App\Models\Glb_Organization;
@@ -44,7 +43,7 @@ class EmployeeController extends Controller
             ->orderBy('org_code')
             ->get();
 
-            return response()->json($glborganization);
+        return response()->json($glborganization);
     }
 
     public function user_org($id)
@@ -65,7 +64,20 @@ class EmployeeController extends Controller
             ->orderBy('org_code')
             ->get();
 
-            return response()->json($glborganization);
+        return response()->json($glborganization);
     }
-    
+
+
+    public function organizationNowAll()
+    {
+        $max = Glb_Organization::max('org_code');
+        // $max_org_code = substr($max, 0, 2) . '________';
+        $max_org_code = substr($max, 0, 2) . '%';
+
+        $glborganization = Glb_Organization::where('org_code', 'like', $max_org_code)
+            ->orderBy('org_code')
+            ->get();
+
+        return response()->json($glborganization);
+    }
 }

@@ -133,8 +133,7 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-
-    'providers' => [
+'providers' => [
 
         /*
          * Laravel Framework Service Providers...
@@ -161,12 +160,11 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Mews\Captcha\CaptchaServiceProvider::class,
 
         /*
          * Package Service Providers...
+         * (Yajra DataTables และ Captcha มี Auto-Discovery ในตัวแล้ว)
          */
-        Yajra\DataTables\DataTablesServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -177,19 +175,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Collective\Html\HtmlServiceProvider::class,
-
     ],
 
     /*
     |--------------------------------------------------------------------------
     | Class Aliases
     |--------------------------------------------------------------------------
-    |
-    | This array of class aliases will be registered when this application
-    | is started. However, feel free to register as many as you wish as
-    | the aliases are "lazy" loaded so they don't hinder performance.
-    |
     */
 
     'aliases' => [
@@ -233,9 +224,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-        'Form' => Collective\Html\FormFacde::class,
-        'Html' => Collective\Html\HtmlFacde::class,
-        'Captcha' => Mews\Captcha\Facades\Captcha::class,
 
     ],
 

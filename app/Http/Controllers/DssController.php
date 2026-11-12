@@ -34,7 +34,7 @@ class DssController extends Controller
         // dd($data);
         // dd($request->search);
 
-        return Datatables::eloquent($data)
+        return datatables::eloquent($data)
             ->filter(function ($query) use ($request) {
                 if ($request->has('emp_name')) {
                     $query->where('emp_name', 'like', "%{$request->emp_name}%");
@@ -68,7 +68,7 @@ class DssController extends Controller
         }
 
         $data = P_EMP_ALL::where('id', $id)->first();
-        // dd($data);          
+        // dd($data);
         return response()->json($data);
     }
 
@@ -80,7 +80,7 @@ class DssController extends Controller
     public function viewDetailAdmin($id)
     {
         $data = P_EMP_ALL::where('emp_id', $id)->get();
-        // dd($data); 
+        // dd($data);
         // $data_id = $data->first(); //ดึงค่าชุดแรก
         // $l_id_count = $data_id->l_id;  //ชี้ค่าที่ต้องการใช้งาน
 
@@ -107,30 +107,30 @@ class DssController extends Controller
         $hr->show_order = $request->input('show_order');
 
 
-        // Handle File Upload
-        if ($request->hasFile('image')) {
-            $oldPic = $request->input('oldImage');
-            if (File::exists(public_path('storage/images/profile/') . $oldPic)) {
-                File::delete(public_path('storage/images/profile/') . $oldPic);
-                // Get just ext
-                $extension = $request->file('image')->getClientOriginalExtension();
-                // Filename to store
-                $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension;
-                // Upload Image
-                $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
-                // save
-                $hr->image = $fileNameToStore;
-            } else {
-                // Get just ext
-                $extension = $request->file('image')->getClientOriginalExtension();
-                // Filename to store
-                $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension; // ให้ใช้ emp_id ต่อกับ time   
-                // Upload Image
-                $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
-                // save
-                $hr->image = $fileNameToStore;
-            }
-        }
+        // // Handle File Upload
+        // if ($request->hasFile('image')) {
+        //     $oldPic = $request->input('oldImage');
+        //     if (File::exists(public_path('storage/images/profile/') . $oldPic)) {
+        //         File::delete(public_path('storage/images/profile/') . $oldPic);
+        //         // Get just ext
+        //         $extension = $request->file('image')->getClientOriginalExtension();
+        //         // Filename to store
+        //         $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension;
+        //         // Upload Image
+        //         $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
+        //         // save
+        //         $hr->image = $fileNameToStore;
+        //     } else {
+        //         // Get just ext
+        //         $extension = $request->file('image')->getClientOriginalExtension();
+        //         // Filename to store
+        //         $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension; // ให้ใช้ emp_id ต่อกับ time
+        //         // Upload Image
+        //         $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
+        //         // save
+        //         $hr->image = $fileNameToStore;
+        //     }
+        // }
 
 
         $hr->save();
@@ -148,7 +148,7 @@ class DssController extends Controller
     public function viewDetailProcurement()
     {
         $data = P_EMP_ALL::where('emp_id', Session::get('emp_id'))->get();
-        // dd($data); 
+        // dd($data);
         // $data_id = $data->first(); //ดึงค่าชุดแรก
         // $l_id_count = $data_id->l_id;  //ชี้ค่าที่ต้องการใช้งาน
 
@@ -173,30 +173,30 @@ class DssController extends Controller
         $hr->dss_location = $request->input('dss_location');
         $hr->line_token = $request->input('line_token');
 
-        // Handle File Upload
-        if ($request->hasFile('image')) {
-            $oldPic = $request->input('oldImage');
-            if (File::exists(public_path('storage/images/profile/') . $oldPic)) {
-                File::delete(public_path('storage/images/profile/') . $oldPic);
-                // Get just ext
-                $extension = $request->file('image')->getClientOriginalExtension();
-                // Filename to store
-                $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension;
-                // Upload Image
-                $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
-                // save
-                $hr->image = $fileNameToStore;
-            } else {
-                // Get just ext
-                $extension = $request->file('image')->getClientOriginalExtension();
-                // Filename to store
-                $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension; // ให้ใช้ emp_id ต่อกับ time   
-                // Upload Image
-                $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
-                // save
-                $hr->image = $fileNameToStore;
-            }
-        }
+        // // Handle File Upload
+        // if ($request->hasFile('image')) {
+        //     $oldPic = $request->input('oldImage');
+        //     if (File::exists(public_path('storage/images/profile/') . $oldPic)) {
+        //         File::delete(public_path('storage/images/profile/') . $oldPic);
+        //         // Get just ext
+        //         $extension = $request->file('image')->getClientOriginalExtension();
+        //         // Filename to store
+        //         $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension;
+        //         // Upload Image
+        //         $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
+        //         // save
+        //         $hr->image = $fileNameToStore;
+        //     } else {
+        //         // Get just ext
+        //         $extension = $request->file('image')->getClientOriginalExtension();
+        //         // Filename to store
+        //         $fileNameToStore = $hr->emp_id . date('His') . '.' . $extension; // ให้ใช้ emp_id ต่อกับ time
+        //         // Upload Image
+        //         $request->file('image')->storeAs('public/images/profile/', $fileNameToStore);
+        //         // save
+        //         $hr->image = $fileNameToStore;
+        //     }
+        // }
 
 
         $hr->save();

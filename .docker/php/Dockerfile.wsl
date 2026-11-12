@@ -1,0 +1,70 @@
+# Use Debian Bookworm-based PHP 8.4 image for glibc compatibility with Oracle Client
+FROM php:8.4-fpm-bookworm
+
+# 1. Install required system dependencies (with fallback for libaio)
+RUN apt-get update && apt-get install -y \
+    wget \
+    unzip \
+    libaio1 \
+    libaio-dev \
+    git \
+    libzip-dev \
+    libicu-dev \
+    || apt-get install -y libaio1t64 libaio-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# 2. Download and extract Oracle Instant Client 21 (v21.15)
+WORKDIR /opt/oracle
+RUN wget https://download.oracle.com/otn_software/linux/instantclient/2115000/instantclient-basic-linux.x64-21.15.0.0.0dbru.zip && \
+    wget https://download.oracle.com/otn_software/linux/instantclient/2115000/instantclient-sdk-linux.x64-21.15.0.0.0dbru.zip && \
+    unzip instantclient-basic-linux.x64-21.15.0.0.0dbru.zip && \
+    unzip instantclient-sdk-linux.x64-21.15.0.0.0dbru.zip && \
+    rm -f *.zip
+
+# 3. Configure Oracle symlinks and system dynamic linker paths
+RUN ln -s /opt/oracle/instantclient_21_15 /opt/oracle/instantclient && \
+    echo /opt/oracle/instantclient > /etc/ld.so.conf.d/oracle-instantclient.conf && \
+    ldconfig
+
+# 4. Set global environment variables for Oracle Client
+ENV LD_LIBRARY_PATH="/opt/oracle/instantclient"
+ENV ORACLE_HOME="/opt/oracle/instantclient"
+
+# 5. Download extension installer directly inside container and compile PHP modules
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions bcmath opcache zip intl mbstring oci8 pdo_oci
+
+# 6. Inject Composer binary from official multi-stage build
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# 7. Map www-data UID/GID with WSL2 host User (1000) for seamless Volume Mounting
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+RUN usermod -u ${USER_ID} www-data && groupmod -g ${GROUP_ID} www-data
+
+# Set working directory for dss-backoffice-api
+WORKDIR /var/www/dss-backoffice-api
+
+# Create storage, temp, and Composer cache directory with www-data ownership
+RUN mkdir -p /var/www/.composer \
+            storage \
+            bootstrap/cache \
+            /tmp/php_tmp && \
+    chown -R www-data:www-data /var/www/.composer /var/www/dss-backoffice-api /tmp/php_tmp && \
+    chmod -R 775 storage bootstrap/cache /tmp/php_tmp
+
+# 8. Increase runtime thresholds & Explicitly set PHP temp directories
+RUN echo "upload_max_filesize=100M" > /usr/local/etc/php/conf.d/uploads.ini && \
+    echo "post_max_size=100M" >> /usr/local/etc/php/conf.d/uploads.ini && \
+    echo "sys_temp_dir=/tmp/php_tmp" >> /usr/local/etc/php/conf.d/uploads.ini && \
+    echo "upload_tmp_dir=/tmp/php_tmp" >> /usr/local/etc/php/conf.d/uploads.ini
+
+# Add safe directory exception at system level to survive volume mounts
+RUN git config --system --add safe.directory /var/www/dss-backoffice-api
+
+USER www-data
+
+EXPOSE 9000
+
+CMD ["php-fpm"]

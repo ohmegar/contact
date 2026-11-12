@@ -6,42 +6,191 @@
 
 @include('frontend.topuser')
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="section-topic">ค้นหาตามเบอร์โทร</div>
+<!-- Style ปรับแต่งหน้าค้นหาตามเบอร์โทร ให้เข้าชุดกับธีมสีเขียว วศ. -->
+<style>
+    /* แถบหัวข้อด้านบน: สีเขียวทึบสีเดียว (ไม่ไล่สี) */
+    .st-page-header {
+        background-color: #064e3b;
+        padding: 40px 0 65px 0;
+        color: #ffffff;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: -40px;
+    }
+
+    .st-page-header::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(110, 231, 183, 0.15) 1px, transparent 1px);
+        background-size: 24px 24px;
+        pointer-events: none;
+    }
+
+    /* กล่องฟอร์มค้นหาแบบ Floating Card */
+    .search-glass-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 24px 28px;
+        box-shadow: 0 12px 35px rgba(6, 78, 59, 0.12);
+        border: 1px solid rgba(209, 250, 229, 0.8);
+        position: relative;
+        z-index: 3;
+    }
+
+    .search-input-modern {
+        border: 2px solid #e2e8f0;
+        border-left: none;
+        border-radius: 0 14px 14px 0 !important;
+        padding: 12px 18px;
+        font-size: 1.05rem;
+        height: auto;
+        transition: all 0.25s ease;
+    }
+
+    .search-input-modern:focus {
+        border-color: #059669;
+        box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.12);
+    }
+
+    .search-prepend-modern {
+        background-color: #059669;
+        color: #ffffff;
+        border: none;
+        border-radius: 14px 0 0 14px !important;
+        padding: 0 20px;
+        font-weight: 600;
+    }
+
+    /* กล่องตาราง DataTables */
+    .table-modern-card {
+        background: #ffffff;
+        border-radius: 22px;
+        border: 1px solid #f1f5f9;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+    }
+
+    #tbview_st {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100% !important;
+    }
+
+    /* หัวตารางทั้งหมด: สีเดียวเสมอกันทุกช่อง */
+    #tbview_st thead th {
+        background-color: #064e3b !important;
+        color: #ffffff !important;
+        font-weight: 600;
+        font-size: 0.94rem;
+        padding: 15px 10px;
+        border: none !important;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+    #tbview_st tbody td {
+        vertical-align: middle;
+        padding: 12px 10px;
+        border-color: #f1f5f9 !important;
+        font-size: 0.92rem;
+        color: #334155;
+    }
+
+    #tbview_st tbody tr:hover {
+        background-color: #f0fdf4 !important;
+        transition: background-color 0.2s ease;
+    }
+
+    /* ตกแต่งรูปโปรไฟล์ในตาราง */
+    #tbview_st tbody td img {
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        object-fit: cover;
+    }
+
+    /*  Style ปุ่มดาวบันทึกคนโปรด */
+    .btn-fav-star {
+        background: transparent;
+        border: none;
+        padding: 2px 6px;
+        cursor: pointer;
+        font-size: 1.25rem;
+        line-height: 1;
+        transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        vertical-align: middle;
+        outline: none !important;
+    }
+
+    .btn-fav-star:hover {
+        transform: scale(1.25);
+    }
+
+    .btn-fav-star .fa-star-o {
+        color: #94a3b8;
+    }
+
+    .btn-fav-star:hover .fa-star-o {
+        color: #f59e0b;
+    }
+
+    .btn-fav-star .fa-star {
+        color: #f59e0b;
+        filter: drop-shadow(0 2px 4px rgba(245, 158, 11, 0.35));
+    }
+</style>
+
+<!-- ส่วนหัวหน้าค้นหาตามเบอร์โทร -->
+<div class="st-page-header">
+    <div class="container position-relative" style="z-index: 2;">
+        <div class="row align-items-center">
+            <div class="col-md-8 text-center text-md-left">
+                <span class="badge badge-pill px-3 py-1 mb-2"
+                    style="background: rgba(52, 211, 153, 0.18); color: #6ee7b7; border: 1px solid rgba(52, 211, 153, 0.3);">
+                    <i class="fa fa-phone mr-1"></i> DSS PHONE DIRECTORY SEARCH
+                </span>
+                <h2 class="font-weight-bold text-white mb-1">ค้นหาตามเบอร์โทรศัพท์</h2>
+                <p class="text-white-50 mb-0 small">พิมพ์หมายเลขโทรศัพท์ภายใน (4 หลัก) หรือเบอร์โทรตรง
+                    ระบบจะแสดงข้อมูลผู้รับสายและสังกัดทันที</p>
+            </div>
+            <div class="col-md-4 text-center text-md-right d-none d-md-block">
+                <i class="fa fa-phone-square" style="font-size: 4.5rem; color: rgba(255, 255, 255, 0.12);"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container pb-5">
+
+    <!-- กล่องกรอกเบอร์โทรศัพท์ (คง ID, Name และเงื่อนไขรับเฉพาะตัวเลขเดิมทั้งหมด) -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-12">
+            <div class="search-glass-card">
+                <form action="" id="search-form" name="search-form" method="GET">
+                    <label for="dss_phone" class="font-weight-bold text-dark mb-2 small">
+                        <i class="fa fa-phone-square text-success mr-1"></i> ระบุหมายเลขโทรศัพท์ (เฉพาะตัวเลขเท่านั้น)
+                    </label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text search-prepend-modern">
+                                <i class="fa fa-phone mr-2"></i> ค้นหาตามเบอร์โทร
+                            </span>
+                        </div>
+                        <input type="text" name="dss_phone" id="dss_phone" class="form-control search-input-modern"
+                            autocomplete="off" placeholder="โปรดกรอก เบอร์โทร ที่ต้องการค้นหา (เฉพาะตัวเลขเท่านั้น)..."
+                            onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
-    <img class="position-absolute pointer-events-none" src="{{ asset('style-index/images/vector-1.png') }}" alt="vector-2"
-        style="z-index: -1;width: 30vw;top: 130;left: 0;">
-
-
-    <div class="col-md-12">
-        <form action="" id="search-form" name="search-form" method="GET">
-            <div class="input-group">
-                <span class="input-group-text"
-                    style="background-image: linear-gradient(to right,#8E2DE2,#4A00E0); color: #FFF">ค้นหาข้อมูลตามเบอร์โทร
-                    : </span>
-                {{-- <input type="text" name="dss_phone" id="dss_phone" class="form-control" autocomplete="off" placeholder="โปรดกรอก เบอร์โทร ถ้าหากทราบ (เฉพาะตัวเลขเท่านั้น)"> --}}
-                <input type="text" name="dss_phone" id="dss_phone" class="form-control" autocomplete="off"
-                    placeholder="โปรดกรอก เบอร์โทร ถ้าหากทราบ (เฉพาะตัวเลขเท่านั้น)"
-                    onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-            </div>
-            <br>
-            {{-- <center><span class="input-group-btn">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> ค้นหา</button>
-                    <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> ล้างค่า</button>
-                </span> </center> --}}
-        </form>
-    </div>
-
-    <div class="card mb-3">
-        <div class="card-body table-responsive">
-            <table class="table table-bordered table-striped table-sm display" id="tbview_st">
+    <!-- ตารางแสดงผลลัพธ์ (คงโครงสร้างคอลัมน์ 11 ช่อง และ ID tbview_st เดิมทุกประการ) -->
+    <div class="card table-modern-card mb-4">
+        <div class="card-body p-3 p-md-4 table-responsive">
+            <table class="table table-hover display" id="tbview_st">
                 <thead>
-                    <tr align="center"
-                        style="background-image: linear-gradient(to right, #d18f17,#d18f17); color: #000000">
+                    <tr align="center">
                         <th>กอง/สำนัก</th>
                         <th>กลุ่ม</th>
                         <th style="width: 5%">#</th>
@@ -56,25 +205,261 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    <!-- ข้อมูลจะถูกโหลดและเรนเดอร์โดย frontend.js อัตโนมัติ -->
                 </tbody>
             </table>
         </div>
     </div>
+
 </div>
 
-
-</body>
-
-
-
+<!-- JavaScript เดิมของระบบ + ตัวตรวจจับแถวจัดกลุ่มแบบ Real-time -->
 <script src="{{ asset('style-index/js/frontend.js') }}"></script>
 <script>
     $(function() {
         $('#dss_phone').on('keyup', function() {
             $('#search-form').submit();
-        })
+        });
+
+        function highlightGroupRows() {
+            var tbody = document.querySelector('#tbview_st tbody');
+            if (!tbody) return;
+
+            var rows = tbody.querySelectorAll('tr');
+            rows.forEach(function(tr) {
+                var cells = tr.querySelectorAll('td, th');
+                var isGroupRow = (cells.length === 1) ||
+                    tr.className.indexOf('group') !== -1 ||
+                    tr.className.indexOf('dtrg') !== -1;
+
+                if (isGroupRow && cells.length > 0) {
+                    var cell = cells[0];
+                    var html = cell.innerHTML;
+                    var text = cell.textContent.trim();
+
+                    if (!text || cell.classList.contains('dataTables_empty')) return;
+
+                    // แถบหลัก: กอง/สำนัก -> สีเขียวมิ้นต์สว่าง
+                    var isMainDivision = tr.classList.contains('dtrg-level-0') ||
+                        html.indexOf('fa-map-marker') !== -1 ||
+                        html.indexOf('<i') !== -1 ||
+                        text.indexOf('ส่วนกลาง') !== -1;
+
+                    if (isMainDivision) {
+                        tr.style.setProperty('background', '#d1fae5', 'important');
+                        cell.style.setProperty('background', '#d1fae5', 'important');
+                        cell.style.setProperty('color', '#064e3b', 'important');
+                        cell.style.setProperty('font-weight', '700', 'important');
+                        cell.style.setProperty('font-size', '1.05rem', 'important');
+                        cell.style.setProperty('padding', '12px 18px', 'important');
+                        cell.style.setProperty('border-left', '6px solid #059669', 'important');
+                        cell.style.setProperty('border-top', '1px solid #a7f3d0', 'important');
+                        cell.style.setProperty('border-bottom', '1px solid #a7f3d0', 'important');
+
+                        cell.querySelectorAll('*').forEach(function(el) {
+                            el.style.setProperty('color', '#064e3b', 'important');
+                        });
+                    } else {
+                        // แถบย่อย: กลุ่มงาน -> สีเหลืองนวล
+                        tr.style.setProperty('background', '#fef9c3', 'important');
+                        cell.style.setProperty('background', '#fef9c3', 'important');
+                        cell.style.setProperty('color', '#854d0e', 'important');
+                        cell.style.setProperty('font-weight', '700', 'important');
+                        cell.style.setProperty('font-size', '0.96rem', 'important');
+                        cell.style.setProperty('padding', '10px 26px', 'important');
+                        cell.style.setProperty('border-left', '6px solid #eab308', 'important');
+                        cell.style.setProperty('border-bottom', '1px solid #fef08a', 'important');
+
+                        cell.querySelectorAll('*').forEach(function(el) {
+                            el.style.setProperty('color', '#854d0e', 'important');
+                        });
+                    }
+                }
+            });
+        }
+
+        // สั่งทำงานทั้งตอนโหลดเสร็จ, ทุกครั้งที่ DataTables วาดใหม่, และจับความเปลี่ยนแปลง DOM
+        highlightGroupRows();
+        $('#tbview_st').on('draw.dt init.dt xhr.dt', function() {
+            setTimeout(highlightGroupRows, 50);
+        });
+
+        var targetTable = document.getElementById('tbview_st');
+        if (targetTable) {
+            var observer = new MutationObserver(function() {
+                highlightGroupRows();
+            });
+            observer.observe(targetTable, {
+                childList: true,
+                subtree: true
+            });
+        }
     });
+</script>
+
+
+<script>
+    (function() {
+        // *** เปลี่ยน ID ตารางให้ตรงกับแต่ละหน้า: '#tbview_sn' | '#tbview_so' | '#tbview_st' ***
+        var TARGET_TABLE_SELECTOR = '#tbview_st';
+        var FAV_STORAGE_KEY = 'dss_favorite_contacts_v1';
+
+        function getFavorites() {
+            try {
+                return JSON.parse(localStorage.getItem(FAV_STORAGE_KEY)) || [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveFavorites(list) {
+            try {
+                localStorage.setItem(FAV_STORAGE_KEY, JSON.stringify(list));
+            } catch (e) {
+                console.warn('Cannot save favorites to localStorage', e);
+            }
+        }
+
+
+        // ดึงข้อมูลบุคลากรจากแถว <tr> เพื่อบันทึกลงคนโปรด (เอาเฉพาะชื่อไทย และชื่ออังกฤษ)
+        function extractRowContactData(tr) {
+            var tds = tr.querySelectorAll('td');
+            if (tds.length < 7) return null;
+
+            var nameCell = tds[0];
+            var cloneName = nameCell.cloneNode(true);
+            var starBtn = cloneName.querySelector('.btn-fav-star');
+            if (starBtn) starBtn.remove();
+
+            // ล้างคำว่า Emp. ID ออกก่อนแยกบรรทัด
+            var cleanText = cloneName.innerText.replace(/Emp\.?\s*ID\s*:?\s*[A-Za-z0-9_-]+/gi, '');
+            var rawLines = cleanText.split('\n').map(function(s) {
+                return s.trim();
+            }).filter(Boolean);
+
+            var thaiName = rawLines[0] || '';
+            var engName = rawLines[1] || '';
+            if (!thaiName) return null;
+
+            var contactKey = 'name_' + thaiName;
+
+            // ดึงรูปภาพ
+            var imgEl = tds[1] ? tds[1].querySelector('img') : null;
+            var imgSrc = imgEl ? imgEl.getAttribute('src') : "{{ asset('style-index/images/nophoto.png') }}";
+
+            // ดึงตำแหน่ง, เบอร์โทร, อีเมล, สถานที่ทำงาน
+            var position = tds[2] ? tds[2].innerText.trim().replace(/\s+/g, ' ') : '-';
+            var phone = tds[4] ? tds[4].innerText.trim().replace(/\s+/g, ' ') : '-';
+            var email = tds[6] ? tds[6].innerText.trim().replace(/\s+/g, ' ') : '-';
+            var location = tds[7] ? tds[7].innerText.trim().replace(/\s+/g, ' ') : '-';
+
+            // หาชื่อ กอง/สำนัก จากแถวจัดกลุ่มด้านบนที่ใกล้ที่สุด
+            var division = '';
+            var prev = tr.previousElementSibling;
+            while (prev) {
+                var prevCells = prev.querySelectorAll('td, th');
+                if (prevCells.length === 1) {
+                    var txt = prevCells[0].innerText.trim();
+                    if (txt.indexOf('ส่วนกลาง') !== -1 || prevCells[0].innerHTML.indexOf('fa-map-marker') !== -1) {
+                        division = txt;
+                        break;
+                    }
+                }
+                prev = prev.previousElementSibling;
+            }
+
+            return {
+                key: contactKey,
+                name: thaiName,
+                engName: engName,
+                image: imgSrc,
+                position: position,
+                phone: phone,
+                email: email,
+                location: location,
+                division: division,
+                savedAt: Date.now()
+            };
+        }
+
+        // ฉีดปุ่มดาวเข้าไปในทุกแถวข้อมูลของตาราง
+        function injectFavoriteStars() {
+            var tbody = document.querySelector(TARGET_TABLE_SELECTOR + ' tbody');
+            if (!tbody) return;
+
+            var favList = getFavorites();
+            var favKeys = favList.map(function(item) {
+                return item.key;
+            });
+
+            var rows = tbody.querySelectorAll('tr');
+            rows.forEach(function(tr) {
+                var tds = tr.querySelectorAll('td');
+                // ข้ามแถวจัดกลุ่ม (colspan) หรือแถวว่าง
+                if (tds.length < 7) return;
+
+                var nameCell = tds[0];
+                if (nameCell.querySelector('.btn-fav-star')) return; // มีปุ่มดาวแล้วข้ามไป
+
+                var contactData = extractRowContactData(tr);
+                if (!contactData) return;
+
+                var isFav = favKeys.indexOf(contactData.key) !== -1;
+
+                var btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'btn-fav-star mr-1';
+                btn.title = isFav ? 'นำออกจากคนโปรด' : 'บันทึกเป็นคนโปรด';
+                btn.innerHTML = isFav ? '<i class="fa fa-star"></i>' : '<i class="fa fa-star-o"></i>';
+
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    var currentList = getFavorites();
+                    var idx = currentList.findIndex(function(x) {
+                        return x.key === contactData.key;
+                    });
+
+                    if (idx !== -1) {
+                        // ลบออกจากคนโปรด
+                        currentList.splice(idx, 1);
+                        btn.innerHTML = '<i class="fa fa-star-o"></i>';
+                        btn.title = 'บันทึกเป็นคนโปรด';
+                    } else {
+                        // เพิ่มเข้าคนโปรด (อัปเดตข้อมูลล่าสุดจากแถว)
+                        var freshData = extractRowContactData(tr) || contactData;
+                        currentList.unshift(freshData);
+                        btn.innerHTML = '<i class="fa fa-star"></i>';
+                        btn.title = 'นำออกจากคนโปรด';
+                    }
+                    saveFavorites(currentList);
+                });
+
+                // แทรกปุ่มดาวไว้หน้าสุดของช่องชื่อ-นามสกุล
+                nameCell.insertBefore(btn, nameCell.firstChild);
+            });
+        }
+
+        // เฝ้าดูการเปลี่ยนแปลงของตารางแบบ Real-time
+        $(function() {
+            injectFavoriteStars();
+            $(TARGET_TABLE_SELECTOR).on('draw.dt init.dt xhr.dt', function() {
+                setTimeout(injectFavoriteStars, 60);
+            });
+
+            var tableEl = document.querySelector(TARGET_TABLE_SELECTOR);
+            if (tableEl) {
+                var observer = new MutationObserver(function() {
+                    injectFavoriteStars();
+                });
+                observer.observe(tableEl, {
+                    childList: true,
+                    subtree: true
+                });
+            }
+        });
+    })();
 </script>
 
 
