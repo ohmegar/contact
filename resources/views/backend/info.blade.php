@@ -177,7 +177,7 @@
                             {{-- ส่วนรูปโปรไฟล์ --}}
                             <div class="profile-avatar-section text-center">
                                 @if (!empty($data->image))
-                                    <img src="{{ asset('storage/images/profile/' . $data->image) }}"
+                                    <img src="{{ 'http://hr-expertise.dss.local/storage/images/profile/' . $data->image }}"
                                         class="img-dss profile-avatar-img" alt="User Image">
                                 @else
                                     <img src="{{ asset('style-index/images/nophoto.png') }}"

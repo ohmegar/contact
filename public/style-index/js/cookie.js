@@ -1,8 +1,8 @@
 (function (window, undefined){
 	"use strict";
-	
+
 	var document = window.document;
-	
+
 	function log() {
 		if (window.console && window.console.log) {
 			for (var x in arguments) {
@@ -12,28 +12,28 @@
 			}
 		}
 	}
-	
+
 	function AcceptCookie() {
 		if (!(this instanceof AcceptCookie)) {
 			return new AcceptCookie();
 		}
-				
+
 		this.init.call(this);
-		
+
 		return this;
 	}
-	
+
 	AcceptCookie.prototype = {
-		
+
 		init: function () {
 			var self = this;
-			
+
 			if(self.readCookie('pjAcceptCookie') == null)
 			{
 				self.appendCss();
 				self.addCookieBar();
 			}
-			
+
 			var clear_cookie_arr = self.getElementsByClass("pjClearCookie", null, "a");
 			if(clear_cookie_arr.length > 0)
 			{
@@ -121,7 +121,7 @@
 			    link.media = 'all';
 			    head.appendChild(link);
 			}
-			
+
 			var cssCode = "";
 			cssCode += "#pjAcceptCookieBar .pjAcceptCookieBarBtn,";
 			cssCode += "#pjAcceptCookieBar .pjAcceptCookieBarBtn:after { -webkit-transition: all .5s ease-in-out; -moz-transition: all .5s ease-in-out; -ms-transition: all .5s ease-in-out; -o-transition: all .5s ease-in-out; transition: all .5s ease-in-out; }";
@@ -149,7 +149,7 @@
 			cssCode += "#pjAcceptCookieBar .pjAcceptCookieBarShell { width: 96%; }";
 			cssCode += "#pjAcceptCookieBar p { font-size: 16px; }";
 			cssCode += "}";
-			
+
 			var styleElement = document.createElement("style");
 			styleElement.type = "text/css";
 			if (styleElement.styleSheet) {
@@ -162,22 +162,22 @@
 		addCookieBar: function(){
 			var self = this;
 			var htmlBar = '';
-			
+
 			htmlBar += '<div class="pjAcceptCookieBarShell">';
 			htmlBar += '<form action="#" method="post">';
 			htmlBar += '<p>เราใช้คุกกี้เพื่อเพิ่มประสบการณ์และความพึงพอใจในการใช้งานเว็บไซต์ หากคุณกด “ยอมรับ” หรือใช้งานเว็บไซต์ของเราต่อ ถือว่าคุณยินยอมให้มีการใช้งานคุกกี้ ';
-			htmlBar += '<a href="https://www.dss.go.th/images/ict/DssCookies2564.pdf" target="_blank">อ่านเพิ่มเติม</a> &nbsp;&nbsp;&nbsp;';
+			htmlBar += '<a href="https://www.dss.go.th/index.php/component/content/article?id=2482" target="_blank">อ่านเพิ่มเติม</a> &nbsp;&nbsp;&nbsp;';
 			//htmlBar += '<div class="pjAcceptCookieBarActions">';
 			htmlBar += '<button type="button" class="pjAcceptCookieBarBtn">ยอมรับ</button></p>';
 			//htmlBar += '</div>';
 			htmlBar += '</form>';
 			htmlBar += '</div>';
-			
+
 			var barDiv = document.createElement('div');
 			barDiv.id = "pjAcceptCookieBar";
 			document.body.appendChild(barDiv);
 			barDiv.innerHTML = htmlBar;
-			
+
 			self.bindCookieBar();
 		},
 		bindCookieBar: function(){
@@ -190,15 +190,15 @@
 						e.preventDefault();
 					}
 					self.createCookie('pjAcceptCookie', 'YES', 365);
-					
+
 					document.getElementById("pjAcceptCookieBar").remove();
 					return false;
 				});
 			}
 		}
 	};
-	
-	window.AcceptCookie = AcceptCookie;	
+
+	window.AcceptCookie = AcceptCookie;
 })(window);
 
 window.onload = function() {
