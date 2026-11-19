@@ -20,7 +20,8 @@
     <!-- bootstrap datepicker3 (ย้ายขึ้นมาอยู่ใน head ให้ถูกต้องตามมาตรฐาน) -->
     <link rel="stylesheet" href="{{ asset('style-index/css/bootstrap-datepicker3.min.css') }}" type="text/css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.css') }}">
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.css') }}">
@@ -39,6 +40,19 @@
 
     <!-- Custom Admin Theme: Deep Emerald Green DSS Style -->
     <style>
+        /* ป้องกัน Horizontal Scrollbar ล้นออกด้านข้างใน Chrome / Edge */
+        html,
+        body {
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+        }
+
+        /* ป้องกัน Bootstrap .row ดันทะลุขอบจอเวลาอยู่นอก .container */
+        .container-fluid {
+            overflow-x: hidden;
+        }
+
+
         body {
             font-family: 'Kanit', sans-serif !important;
             background-color: #f4f7f6;
@@ -103,8 +117,8 @@
         }
 
         /* ไฮไลต์เมนูที่เลือกใน Sidebar เป็นโทนเขียวมรกต */
-        .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
-        .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
+        .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active,
+        .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
             background-color: #059669 !important;
             color: #ffffff !important;
             box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);
@@ -150,6 +164,7 @@
             padding: 5px 16px;
             transition: all 0.2s ease;
         }
+
         .btn-logout-modern:hover {
             transform: translateY(-1px);
             box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
@@ -176,7 +191,8 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav align-items-center">
                 <li class="nav-item">
-                    <a class="nav-link text-success" data-widget="pushmenu" href="#" role="button" title="ย่อ/ขยายเมนู">
+                    <a class="nav-link text-success" data-widget="pushmenu" href="#" role="button"
+                        title="ย่อ/ขยายเมนู">
                         <i class="fas fa-bars fa-lg"></i>
                     </a>
                 </li>
@@ -198,7 +214,8 @@
                                 {{ Session::get('pfix_name') }}{{ Session::get('emp_name') }}
                             </span>
                             @if (Session::get('position_view'))
-                                <span class="text-muted d-none d-md-inline">({{ Session::get('position_view') }})</span>
+                                <span
+                                    class="text-muted d-none d-md-inline">({{ Session::get('position_view') }})</span>
                             @endif
                         </div>
 
@@ -219,7 +236,8 @@
                             })();
                         </script>
 
-                        <button type="button" id="btLogout" name="btLogout" class="btn btn-warning btn-sm btn-logout-modern shadow-sm">
+                        <button type="button" id="btLogout" name="btLogout"
+                            class="btn btn-warning btn-sm btn-logout-modern shadow-sm">
                             <i class="fas fa-sign-out-alt mr-1"></i> ออกจากระบบ
                         </button>
                     @endif

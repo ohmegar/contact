@@ -2,7 +2,7 @@
 <style>
     /* ขยายความกว้างเต็มจอ 100vw */
     .dss-hero-wrapper {
-        width: 100vw;
+        width: 100%;
         position: relative;
         left: 50%;
         right: 50%;

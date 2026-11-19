@@ -6416,7 +6416,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   top: 0;
   left: 0;
   z-index: 1040;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-color: #000;
 }
@@ -52461,7 +52461,7 @@ a.text-muted:hover {
 }
 
 /* edit */
-.carousel-indicators li {  
+.carousel-indicators li {
   width: 20px;
   height: 8px;
   background: #fafcfd;

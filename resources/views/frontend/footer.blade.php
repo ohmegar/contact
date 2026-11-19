@@ -1,7 +1,7 @@
 <!-- ================= DIGITAL PRE-FOOTER BANNER (กราฟิกดิจิทัลคั่นก่อน Footer) ================= -->
 <style>
     .pre-footer-digital {
-        width: 100vw;
+        width: 100%;
         position: relative;
         left: 50%;
         right: 50%;
@@ -57,7 +57,7 @@
 
     /* ================= EMERALD GREEN FOOTER ================= */
     .dss-green-footer {
-        width: 100vw;
+        width: 100%;
         position: relative;
         left: 50%;
         right: 50%;

@@ -133,7 +133,7 @@
 
     /* ================= 2. FULL-WIDTH STATS DASHBOARD (100vw) ================= */
     .stat-fullwidth-wrapper {
-        width: 100vw;
+        width: 100%;
         position: relative;
         left: 50%;
         right: 50%;
