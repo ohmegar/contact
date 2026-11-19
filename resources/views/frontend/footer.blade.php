@@ -300,11 +300,25 @@
         box-shadow: 0 12px 26px rgba(5, 150, 105, 0.4);
         background: #022c22;
     }
+
+<style>
+    /* 1. ตัดส่วนเกินออกเฉพาะระดับขอบนอกสุด โดยไม่ยุ่งกับ .row ด้านใน */
+    html, body {
+        max-width: 100% !important;
+        overflow-x: clip !important;
+    }
+
+    /* 2. ตัดวงกลมตกแต่งใน Footer ที่ยื่นเกินขอบขวา */
+    footer, .footer, .footer-section {
+        overflow: hidden !important;
+        position: relative !important;
+    }
 </style>
 
 
+
 <!-- ================= FOOTER โทนสีเขียว EMERALD ================= -->
-<footer class="dss-green-footer pt-5">
+<footer class="dss-green-footer pt-5"
     <div class="footer-glow-spot"></div>
 
     <div class="container pb-4 position-relative" style="z-index: 2;">
