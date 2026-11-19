@@ -174,6 +174,7 @@ $(document).ready(function () {
                         var data =
                             '<center><img src="style-index/images/nophoto.png" class="img-dss"></img></center>';
                     } else {
+                        // รอเปลี่ยน path
                         var data =
                             '<center><img src="http://hr-expertise.dss.local/storage/images/profile/' +
                             row.image +
