@@ -354,16 +354,26 @@
             var email = tds[6] ? tds[6].innerText.trim().replace(/\s+/g, ' ') : '-';
             var location = tds[7] ? tds[7].innerText.trim().replace(/\s+/g, ' ') : '-';
 
-            // หาชื่อ กอง/สำนัก จากแถวจัดกลุ่มด้านบนที่ใกล้ที่สุด
+            // หาชื่อ กอง/สำนัก จากแถวจัดกลุ่มด้านบน (ข้ามหัวข้อย่อย "ส่วนกลางของสังกัด")
             var division = '';
             var prev = tr.previousElementSibling;
             while (prev) {
                 var prevCells = prev.querySelectorAll('td, th');
                 if (prevCells.length === 1) {
                     var txt = prevCells[0].innerText.trim();
-                    if (txt.indexOf('ส่วนกลาง') !== -1 || prevCells[0].innerHTML.indexOf('fa-map-marker') !== -1) {
-                        division = txt;
-                        break;
+                    // ข้ามแถวกลุ่มย่อยอย่าง "ส่วนกลางของสังกัด" หรือแถวที่มีคำว่า "กลุ่ม..."
+                    if (txt !== '' && txt.indexOf('ส่วนกลางของสังกัด') === -1 && prev.className.indexOf('group') !==
+                        -1) {
+                        // ถ้าเป็นแถวระดับกอง/สำนัก (มักเป็น level 0 หรือมีไอคอนอาคาร/หมุดหลัก)
+                        if (prev.classList.contains('dtrg-level-0') || prevCells[0].innerHTML.indexOf(
+                            'fa-building') !== -1 || prevCells[0].innerHTML.indexOf('fa-map-marker') !== -1) {
+                            division = txt.replace(/\(\s*\d+\s*คน\s*\)/g, '').trim();
+                            break;
+                        }
+                        // เก็บค่าสำรองไว้กรณีตารางไม่ได้แยก class dtrg-level-0
+                        if (!division && txt.indexOf('กลุ่ม') !== 0 && txt.indexOf('ฝ่าย') !== 0) {
+                            division = txt.replace(/\(\s*\d+\s*คน\s*\)/g, '').trim();
+                        }
                     }
                 }
                 prev = prev.previousElementSibling;

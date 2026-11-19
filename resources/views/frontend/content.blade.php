@@ -625,10 +625,13 @@
     }
 
     .fav-avatar {
-        width: 68px;
-        height: 68px;
-        border-radius: 18px;
-        object-fit: cover;
+        width: 68px !important;
+        height: 84px !important;
+        /* ปรับเป็นทรงสี่เหลี่ยมผืนผ้าแนวตั้ง ไม่บีบหัวขาด */
+        border-radius: 14px;
+        object-fit: cover !important;
+        object-position: center 15% !important;
+        /* ยึดช่วงศีรษะและใบหน้าให้อยู่ในกรอบพอดี */
         border: 3px solid #ffffff;
         box-shadow: 0 6px 16px rgba(6, 78, 59, 0.2);
         background-color: #ffffff;
@@ -1898,4 +1901,66 @@
 
         renderFavoriteSection();
     });
+
+    // อัปเดตชื่อสังกัดจริง (division) และแยกชื่อไทย-อังกฤษ ให้รายการคนโปรดเก่าอัตโนมัติ
+    function syncFavoritesWithDirectoryData() {
+        var list = getFavorites();
+        if (list.length === 0) return;
+
+        // ดึงข้อมูลพนักงานจาก Cache ของ OrgChart (ถ้ามี) หรือเรียก /data-sn
+        var cachedRaw = localStorage.getItem('dss_org_chart_cache_v1');
+        var applySync = function(empList) {
+            if (!Array.isArray(empList) || empList.length === 0) return;
+            var updated = false;
+
+            list.forEach(function(fav) {
+                var names = parseCleanNames(fav);
+                // ค้นหาพนักงานคนนี้จากชื่อภาษาไทยในฐานข้อมูล API
+                var matched = empList.find(function(e) {
+                    var fullTh = ((e.pfix_name || '') + (e.emp_name || '')).replace(/\s+/g, ' ')
+                        .trim();
+                    return fullTh === names.th || (e.emp_name && names.th.indexOf(e.emp_name
+                        .trim()) !== -1);
+                });
+
+                if (matched) {
+                    if (matched.division && fav.division !== matched.division.trim()) {
+                        fav.division = matched.division.trim();
+                        updated = true;
+                    }
+                    var apiEng = ((matched.pfix_name_e || '') + (matched.english_name || '')).trim();
+                    if (apiEng && fav.engName !== apiEng) {
+                        fav.name = names.th;
+                        fav.engName = apiEng;
+                        updated = true;
+                    }
+                }
+            });
+
+            if (updated) {
+                saveFavorites(list);
+                renderFavoriteSection();
+            }
+        };
+
+        if (cachedRaw) {
+            try {
+                var parsed = JSON.parse(cachedRaw);
+                if (parsed && parsed.employees) {
+                    applySync(parsed.employees);
+                    return;
+                }
+            } catch (e) {}
+        }
+
+        fetch("{{ url('/data-sn') }}?length=-1&start=0")
+            .then(function(r) {
+                return r.json();
+            })
+            .then(function(res) {
+                var empList = Array.isArray(res) ? res : (res.data || []);
+                applySync(empList);
+            })
+            .catch(function() {});
+    }
 </script>
