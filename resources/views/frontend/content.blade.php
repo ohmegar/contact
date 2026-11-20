@@ -509,10 +509,14 @@
         transform: translateY(-2px);
     }
 
+
     .member-avatar-img {
-        width: 68px;
-        height: 68px;
-        object-fit: cover;
+        width: 68px !important;
+        height: 84px !important;
+        /* ปรับความสูงเป็นทรงแนวตั้งรับกับภาพถ่ายติดบัตร */
+        object-fit: cover !important;
+        object-position: center 15% !important;
+        /* ยึดช่วงศีรษะและใบหน้าให้อยู่ในกรอบพอดี */
         border-radius: 14px;
         border: 2px solid #d1fae5;
         flex-shrink: 0;
@@ -1683,7 +1687,8 @@
                     '<div class="col-md-6 mb-3">' +
                     '<div class="member-modal-card d-flex align-items-start h-100">' +
                     '<img src="' + imgSrc + '" onerror="this.onerror=null;this.src=\'' + defaultImg +
-                    '\';" class="member-avatar-img mr-3" alt="' + escapeHtml(fullName) + '">' +
+                    '\';" class="member-avatar-img mr-3" style="width: 68px; height: 84px; object-fit: cover; object-position: center 15%;" alt="' +
+                    escapeHtml(fullName) + '">' +
                     '<div class="flex-grow-1 overflow-hidden">' +
                     '<div class="font-weight-bold text-dark text-truncate" style="font-size: 1rem;">' +
                     escapeHtml(fullName) + '</div>' +
